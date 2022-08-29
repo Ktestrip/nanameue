@@ -14,8 +14,6 @@
 		5972867728BCD29D004B721E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5972867628BCD29D004B721E /* Assets.xcassets */; };
 		5972867A28BCD29D004B721E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5972867828BCD29D004B721E /* LaunchScreen.storyboard */; };
 		5972868528BCD29D004B721E /* NanameueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972868428BCD29D004B721E /* NanameueTests.swift */; };
-		5972868F28BCD29D004B721E /* NanameueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972868E28BCD29D004B721E /* NanameueUITests.swift */; };
-		5972869128BCD29D004B721E /* NanameueUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972869028BCD29D004B721E /* NanameueUITestsLaunchTests.swift */; };
 		5990376D28BD465A000D1667 /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5990376C28BD465A000D1667 /* swiftlint.yml */; };
 		5990377028BD4753000D1667 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5990376F28BD4753000D1667 /* GoogleService-Info.plist */; };
 		A3F49BBAC4C89A6BE72DC519 /* Pods_Nanameue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017C7C68E0CC5A1447EE1515 /* Pods_Nanameue.framework */; };
@@ -24,13 +22,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		5972868128BCD29D004B721E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5972866228BCD29B004B721E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5972866928BCD29B004B721E;
-			remoteInfo = Nanameue;
-		};
-		5972868B28BCD29D004B721E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5972866228BCD29B004B721E /* Project object */;
 			proxyType = 1;
@@ -52,7 +43,6 @@
 		5972867B28BCD29D004B721E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5972868028BCD29D004B721E /* NanameueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanameueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5972868428BCD29D004B721E /* NanameueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueTests.swift; sourceTree = "<group>"; };
-		5972868A28BCD29D004B721E /* NanameueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanameueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5972868E28BCD29D004B721E /* NanameueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueUITests.swift; sourceTree = "<group>"; };
 		5972869028BCD29D004B721E /* NanameueUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5990376C28BD465A000D1667 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
@@ -77,13 +67,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2825674AD417AC16C4544F3 /* Pods_NanameueTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5972868728BCD29D004B721E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +101,6 @@
 			children = (
 				5972866A28BCD29B004B721E /* Nanameue.app */,
 				5972868028BCD29D004B721E /* NanameueTests.xctest */,
-				5972868A28BCD29D004B721E /* NanameueUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,24 +190,6 @@
 			productReference = 5972868028BCD29D004B721E /* NanameueTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5972868928BCD29D004B721E /* NanameueUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5972869A28BCD29D004B721E /* Build configuration list for PBXNativeTarget "NanameueUITests" */;
-			buildPhases = (
-				5972868628BCD29D004B721E /* Sources */,
-				5972868728BCD29D004B721E /* Frameworks */,
-				5972868828BCD29D004B721E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5972868C28BCD29D004B721E /* PBXTargetDependency */,
-			);
-			name = NanameueUITests;
-			productName = NanameueUITests;
-			productReference = 5972868A28BCD29D004B721E /* NanameueUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,10 +204,6 @@
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					5972867F28BCD29D004B721E = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 5972866928BCD29B004B721E;
-					};
-					5972868928BCD29D004B721E = {
 						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = 5972866928BCD29B004B721E;
 					};
@@ -264,7 +224,6 @@
 			targets = (
 				5972866928BCD29B004B721E /* Nanameue */,
 				5972867F28BCD29D004B721E /* NanameueTests */,
-				5972868928BCD29D004B721E /* NanameueUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -283,13 +242,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5972867E28BCD29D004B721E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5972868828BCD29D004B721E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -418,15 +370,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5972868628BCD29D004B721E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5972869128BCD29D004B721E /* NanameueUITestsLaunchTests.swift in Sources */,
-				5972868F28BCD29D004B721E /* NanameueUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -434,11 +377,6 @@
 			isa = PBXTargetDependency;
 			target = 5972866928BCD29B004B721E /* Nanameue */;
 			targetProxy = 5972868128BCD29D004B721E /* PBXContainerItemProxy */;
-		};
-		5972868C28BCD29D004B721E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5972866928BCD29B004B721E /* Nanameue */;
-			targetProxy = 5972868B28BCD29D004B721E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -676,42 +614,6 @@
 			};
 			name = Release;
 		};
-		5972869B28BCD29D004B721E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2C69642RJ3;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.NanameueUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Nanameue;
-			};
-			name = Debug;
-		};
-		5972869C28BCD29D004B721E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2C69642RJ3;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.NanameueUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Nanameue;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -738,15 +640,6 @@
 			buildConfigurations = (
 				5972869828BCD29D004B721E /* Debug */,
 				5972869928BCD29D004B721E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5972869A28BCD29D004B721E /* Build configuration list for PBXNativeTarget "NanameueUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5972869B28BCD29D004B721E /* Debug */,
-				5972869C28BCD29D004B721E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
