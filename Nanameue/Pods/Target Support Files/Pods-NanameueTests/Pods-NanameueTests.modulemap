@@ -1,6 +1,0 @@
-framework module Pods_NanameueTests {
-  umbrella header "Pods-NanameueTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
