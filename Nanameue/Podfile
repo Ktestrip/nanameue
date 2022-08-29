@@ -8,10 +8,10 @@ def shared_pods
   use_frameworks!
  
   pod 'SwiftLint', '0.40.3'
-  pod 'Firebase'
+  pod 'Firebase', '7.8.1'
   pod 'Firebase/Analytics', '7.8.1'
-  pod 'Firebase/Crashlytics', '7.8.1'
-  pod 'Firebase/RemoteConfig'
+  pod 'FirebaseAuth', '7.11.0'
+  pod 'FirebaseFirestore', '7.9.0'
 end
 
 target 'Nanameue' do
