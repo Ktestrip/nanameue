@@ -10,5 +10,6 @@
 
 "login_email_placeholder" = "email";
 "login_password_placeholder" = "password";
-"login_connect_button" = "connection";
-"login_create_account_button" = "create an account";
+"login_password_confirm_placeholder" = "confirm password";
+"login_connect_button" = "sign in";
+"login_create_account_button" = "sign up";
