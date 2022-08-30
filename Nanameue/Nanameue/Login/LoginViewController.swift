@@ -8,22 +8,20 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: ShakableTextField!
+    @IBOutlet weak var emailTextField: ShakableTextField!
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var logoImageView: UIImageView!
     //will be used only to keep track of login status
     @IBOutlet weak var statusLabel: UILabel!
 
+    // login method provider
+    var loginProvider: LoginProvider?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
-        // Do any additional setup after loading the view.
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        self.setupBehavior()
         self.setupUI()
     }
 
@@ -42,13 +40,43 @@ class LoginViewController: UIViewController {
         self.createAccountButton.setTitle("login_create_account_button".translate, for: .normal)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupBehavior() {
+        self.connectButton.addTarget(self, action: #selector(self.onConnectButtonTap), for: .touchUpInside)
     }
-    */
+
+    @objc private func onConnectButtonTap() {
+        let email = self.emailTextField.text ?? ""
+        let password = self.passwordTextField.text ?? ""
+
+        // check that both text field ar not empty
+        if [email, password].allSatisfy({ $0?.isEmpty == false }) {
+            self.performConnection(email: email, password: password)
+        }
+
+        // inform user which text field is not correct
+        if email.isEmpty {
+            self.textFieldInformationMissing(textField: self.emailTextField)
+        }
+        if password.isEmpty {
+            self.textFieldInformationMissing(textField: self.passwordTextField)
+        }
+    }
+
+    private func performConnection(email: String, password: String) {
+        self.loginProvider?.performLogin(email: email, password: password) { res in
+            switch res {
+                case .success(_):
+                    // user did succesfully login, redirect to the app
+                    print("yay")
+
+                case .failure(let error):
+                    // login did fail, inform user what went wrong
+                    print(error)
+            }
+        }
+    }
+
+    private func textFieldInformationMissing(textField: ShakableTextField) {
+        textField.shake()
+    }
 }
