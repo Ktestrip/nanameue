@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Nanameue
+
+  Created by Frqnck  on 30/08/2022.
+  
+*/
+
+// MARK: - LOGIN SECTION
+
+"login_email_placeholder" = "email";
+"login_password_placeholder" = "password";
+"login_connect_button" = "connection";
+"login_create_account_button" = "create an account";
