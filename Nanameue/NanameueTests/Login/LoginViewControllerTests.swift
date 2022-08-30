@@ -73,5 +73,4 @@ class LoginViewControllerTests: XCTestCase {
         vc.connectButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(mock.performLoginHasBeenCalled)
     }
-
 }

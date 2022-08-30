@@ -9,11 +9,13 @@ import UIKit
 
 private enum NibName: String {
     case loginViewController = "LoginViewController"
+    case createAccountViewController = "CreateAccountViewController"
 }
 
 enum ViewProvider {
     enum AvailableView {
         case loginViewController
+        case createAccountViewController
     }
 
     static func getViewController(view: ViewProvider.AvailableView) -> UIViewController {
@@ -23,6 +25,12 @@ enum ViewProvider {
                 let viewController = LoginViewController(nibName: nibName, bundle: nil)
                 viewController.loginProvider = LoginProviderController()
                 return viewController
+            case .createAccountViewController:
+                let nibName = NibName.createAccountViewController.rawValue
+                let viewController = CreateAccountViewController(nibName: nibName, bundle: nil)
+                viewController.loginProvider = LoginProviderController()
+                return viewController
+
         }
     }
 }

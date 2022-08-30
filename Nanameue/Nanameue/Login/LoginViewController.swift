@@ -42,6 +42,7 @@ class LoginViewController: UIViewController {
 
     private func setupBehavior() {
         self.connectButton.addTarget(self, action: #selector(self.onConnectButtonTap), for: .touchUpInside)
+        self.createAccountButton.addTarget(self, action: #selector(self.showCreateAccountView), for: .touchUpInside)
     }
 
     @objc private func onConnectButtonTap() {
@@ -78,5 +79,10 @@ class LoginViewController: UIViewController {
 
     private func textFieldInformationMissing(textField: ShakableTextField) {
         textField.shake()
+    }
+
+    @objc private func showCreateAccountView() {
+        let viewController = ViewProvider.getViewController(view: .createAccountViewController)
+        self.present(viewController, animated: true)
     }
 }
