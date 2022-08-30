@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5972866E28BCD29B004B721E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972866D28BCD29B004B721E /* AppDelegate.swift */; };
 		5972867028BCD29B004B721E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972866F28BCD29B004B721E /* SceneDelegate.swift */; };
-		5972867228BCD29B004B721E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972867128BCD29B004B721E /* ViewController.swift */; };
 		5972867528BCD29B004B721E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5972867328BCD29B004B721E /* Main.storyboard */; };
 		5972867728BCD29D004B721E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5972867628BCD29D004B721E /* Assets.xcassets */; };
 		5972867A28BCD29D004B721E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5972867828BCD29D004B721E /* LaunchScreen.storyboard */; };
@@ -36,15 +35,12 @@
 		5972866A28BCD29B004B721E /* Nanameue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanameue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5972866D28BCD29B004B721E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5972866F28BCD29B004B721E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5972867128BCD29B004B721E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5972867428BCD29B004B721E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5972867628BCD29D004B721E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5972867928BCD29D004B721E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5972867B28BCD29D004B721E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5972868028BCD29D004B721E /* NanameueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanameueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5972868428BCD29D004B721E /* NanameueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueTests.swift; sourceTree = "<group>"; };
-		5972868E28BCD29D004B721E /* NanameueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueUITests.swift; sourceTree = "<group>"; };
-		5972869028BCD29D004B721E /* NanameueUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5990376C28BD465A000D1667 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		5990376F28BD4753000D1667 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7189B058481754EEBAC7C9C3 /* Pods-Nanameue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanameue.release.xcconfig"; path = "Target Support Files/Pods-Nanameue/Pods-Nanameue.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,7 +85,6 @@
 				5990376F28BD4753000D1667 /* GoogleService-Info.plist */,
 				5972866C28BCD29B004B721E /* Nanameue */,
 				5972868328BCD29D004B721E /* NanameueTests */,
-				5972868D28BCD29D004B721E /* NanameueUITests */,
 				5972866B28BCD29B004B721E /* Products */,
 				8BDA026EB2FABC49574015B8 /* Pods */,
 				3D294F071965911FA7F0BBCD /* Frameworks */,
@@ -108,9 +103,9 @@
 		5972866C28BCD29B004B721E /* Nanameue */ = {
 			isa = PBXGroup;
 			children = (
+				59E3A1B828BE840800EF4F20 /* Login */,
 				5972866D28BCD29B004B721E /* AppDelegate.swift */,
 				5972866F28BCD29B004B721E /* SceneDelegate.swift */,
-				5972867128BCD29B004B721E /* ViewController.swift */,
 				5972867328BCD29B004B721E /* Main.storyboard */,
 				5972867628BCD29D004B721E /* Assets.xcassets */,
 				5972867828BCD29D004B721E /* LaunchScreen.storyboard */,
@@ -127,13 +122,11 @@
 			path = NanameueTests;
 			sourceTree = "<group>";
 		};
-		5972868D28BCD29D004B721E /* NanameueUITests */ = {
+		59E3A1B828BE840800EF4F20 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5972868E28BCD29D004B721E /* NanameueUITests.swift */,
-				5972869028BCD29D004B721E /* NanameueUITestsLaunchTests.swift */,
 			);
-			path = NanameueUITests;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		8BDA026EB2FABC49574015B8 /* Pods */ = {
@@ -356,7 +349,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5972867228BCD29B004B721E /* ViewController.swift in Sources */,
 				5972866E28BCD29B004B721E /* AppDelegate.swift in Sources */,
 				5972867028BCD29B004B721E /* SceneDelegate.swift in Sources */,
 			);
