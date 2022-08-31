@@ -23,7 +23,7 @@ class ViewProviderTests: XCTestCase {
     }
     
     func testCreateAccountViewControllerConfiguration() {
-        let vc = ViewProvider.getViewController(view: .createAccountViewController)
+        let vc = ViewProvider.getViewController(view: .createAccountViewController(onAccountCreated: { }))
         guard let castedView = vc as? CreateAccountViewController else {
             // not the good type of object
             XCTAssert(true, "viewController is not a CreateAccountViewController")

@@ -15,7 +15,7 @@ private enum NibName: String {
 enum ViewProvider {
     enum AvailableView {
         case loginViewController
-        case createAccountViewController
+        case createAccountViewController(onAccountCreated: (() -> Void))
     }
 
     static func getViewController(view: ViewProvider.AvailableView) -> UIViewController {
@@ -25,10 +25,11 @@ enum ViewProvider {
                 let viewController = LoginViewController(nibName: nibName, bundle: nil)
                 viewController.loginProvider = LoginProviderController()
                 return viewController
-            case .createAccountViewController:
+            case .createAccountViewController(let onAccountCreated):
                 let nibName = NibName.createAccountViewController.rawValue
                 let viewController = CreateAccountViewController(nibName: nibName, bundle: nil)
                 viewController.loginProvider = LoginProviderController()
+                viewController.onAccountCreated = onAccountCreated
                 return viewController
 
         }

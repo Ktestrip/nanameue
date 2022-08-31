@@ -73,4 +73,27 @@ class LoginViewControllerTests: XCTestCase {
         vc.connectButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(mock.performLoginHasBeenCalled)
     }
+    
+    func testEmptyPasswordStatusLabel() {
+        let vc = self.setupView()
+        vc.emailTextField.text = "test@test.fr"
+        // before hitting the button, label should not be visible
+        XCTAssertTrue(vc.statusLabel.isHidden)
+        vc.connectButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(vc.statusLabel.isHidden)
+        XCTAssertEqual(vc.statusLabel.textColor, UIColor(named: "error"))
+        XCTAssertEqual(vc.statusLabel.text, "login_password_missing".translate)
+    }
+    
+    
+    func testEmptyEmailStatusLabel() {
+        let vc = self.setupView()
+        // before hitting the button, label should not be visible
+        XCTAssertTrue(vc.statusLabel.isHidden)
+        
+        vc.connectButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(vc.statusLabel.isHidden)
+        XCTAssertEqual(vc.statusLabel.textColor, UIColor(named: "error"))
+        XCTAssertEqual(vc.statusLabel.text, "login_email_missing".translate)
+    }
 }
