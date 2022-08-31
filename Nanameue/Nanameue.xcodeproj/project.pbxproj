@@ -15,6 +15,11 @@
 		5972868528BCD29D004B721E /* NanameueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972868428BCD29D004B721E /* NanameueTests.swift */; };
 		5990376D28BD465A000D1667 /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5990376C28BD465A000D1667 /* swiftlint.yml */; };
 		5990377028BD4753000D1667 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5990376F28BD4753000D1667 /* GoogleService-Info.plist */; };
+		59975B8C28BFE26D00773388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8B28BFE26D00773388 /* User.swift */; };
+		59975B8E28BFE3EF00773388 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8D28BFE3EF00773388 /* CustomError.swift */; };
+		59975B9228BFE86700773388 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B9028BFE86700773388 /* FeedViewController.swift */; };
+		59975B9328BFE86700773388 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59975B9128BFE86700773388 /* FeedViewController.xib */; };
+		59975B9628BFF4CD00773388 /* FeedViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B9528BFF4CD00773388 /* FeedViewControllerTest.swift */; };
 		59E3A1BD28BE848C00EF4F20 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E3A1BB28BE848C00EF4F20 /* LoginViewController.swift */; };
 		59E3A1BE28BE848C00EF4F20 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59E3A1BC28BE848C00EF4F20 /* LoginViewController.xib */; };
 		59E3A1C528BE87BF00EF4F20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59E3A1C428BE87BF00EF4F20 /* Localizable.strings */; };
@@ -58,6 +63,11 @@
 		5972868428BCD29D004B721E /* NanameueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueTests.swift; sourceTree = "<group>"; };
 		5990376C28BD465A000D1667 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		5990376F28BD4753000D1667 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		59975B8B28BFE26D00773388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		59975B8D28BFE3EF00773388 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		59975B9028BFE86700773388 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		59975B9128BFE86700773388 /* FeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
+		59975B9528BFF4CD00773388 /* FeedViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerTest.swift; sourceTree = "<group>"; };
 		59E3A1BB28BE848C00EF4F20 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		59E3A1BC28BE848C00EF4F20 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		59E3A1C428BE87BF00EF4F20 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -136,6 +146,8 @@
 		5972866C28BCD29B004B721E /* Nanameue */ = {
 			isa = PBXGroup;
 			children = (
+				59975B8F28BFE84D00773388 /* Feed */,
+				59975B8A28BFE25B00773388 /* Model */,
 				59E3A1DA28BEAD0900EF4F20 /* ViewProvider */,
 				59E3A1D028BE993400EF4F20 /* LoginProvider */,
 				59E3A1B828BE840800EF4F20 /* Login */,
@@ -154,12 +166,39 @@
 		5972868328BCD29D004B721E /* NanameueTests */ = {
 			isa = PBXGroup;
 			children = (
+				59975B9428BFF4B600773388 /* Feed */,
 				59E3A1D728BEA82B00EF4F20 /* Mock */,
 				59E3A1CA28BE8B2300EF4F20 /* Login */,
 				5972868428BCD29D004B721E /* NanameueTests.swift */,
 				59E3A1DD28BEAE7D00EF4F20 /* ViewProviderTests.swift */,
 			);
 			path = NanameueTests;
+			sourceTree = "<group>";
+		};
+		59975B8A28BFE25B00773388 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				59975B8B28BFE26D00773388 /* User.swift */,
+				59975B8D28BFE3EF00773388 /* CustomError.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		59975B8F28BFE84D00773388 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				59975B9028BFE86700773388 /* FeedViewController.swift */,
+				59975B9128BFE86700773388 /* FeedViewController.xib */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		59975B9428BFF4B600773388 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				59975B9528BFF4CD00773388 /* FeedViewControllerTest.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		59E3A1B828BE840800EF4F20 /* Login */ = {
@@ -310,6 +349,7 @@
 				5972867A28BCD29D004B721E /* LaunchScreen.storyboard in Resources */,
 				5990376D28BD465A000D1667 /* swiftlint.yml in Resources */,
 				59E3A1BE28BE848C00EF4F20 /* LoginViewController.xib in Resources */,
+				59975B9328BFE86700773388 /* FeedViewController.xib in Resources */,
 				59E3A1C528BE87BF00EF4F20 /* Localizable.strings in Resources */,
 				5990377028BD4753000D1667 /* GoogleService-Info.plist in Resources */,
 				5972867728BCD29D004B721E /* Assets.xcassets in Resources */,
@@ -439,7 +479,10 @@
 				59E3A1D628BE9FFE00EF4F20 /* ShakableTextField.swift in Sources */,
 				5972866E28BCD29B004B721E /* AppDelegate.swift in Sources */,
 				59E3A1E128BEB13900EF4F20 /* CreateAccountViewController.swift in Sources */,
+				59975B8E28BFE3EF00773388 /* CustomError.swift in Sources */,
 				59E3A1D428BE99BE00EF4F20 /* LoginProviderController.swift in Sources */,
+				59975B8C28BFE26D00773388 /* User.swift in Sources */,
+				59975B9228BFE86700773388 /* FeedViewController.swift in Sources */,
 				5972867028BCD29B004B721E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +493,7 @@
 			files = (
 				59E3A1E428BEB62100EF4F20 /* CreateAccountViewControllerTests.swift in Sources */,
 				59E3A1D928BEA84600EF4F20 /* LoginProviderMock.swift in Sources */,
+				59975B9628BFF4CD00773388 /* FeedViewControllerTest.swift in Sources */,
 				59E3A1CC28BE8B3900EF4F20 /* LoginViewControllerTests.swift in Sources */,
 				59E3A1DE28BEAE7D00EF4F20 /* ViewProviderTests.swift in Sources */,
 				59E3A1CF28BE939200EF4F20 /* String+extensionsTests.swift in Sources */,
