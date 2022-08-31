@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="createButton" destination="BLS-ct-a86" id="7N6-nc-dRB"/>
                 <outlet property="emailTextField" destination="sdb-LO-dtC" id="sRC-qB-YFa"/>
+                <outlet property="errorLabel" destination="trC-B6-yux" id="gWa-BY-ZAf"/>
                 <outlet property="logoImageView" destination="sxF-Sg-IeB" id="dVt-j3-C8g"/>
                 <outlet property="passwordConfirmationTextField" destination="Tay-Zb-KIk" id="f3l-Vy-N2J"/>
                 <outlet property="passwordTextField" destination="VOW-dz-vNN" id="SOQ-qV-E7R"/>
@@ -62,6 +63,12 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Button"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trC-B6-yux">
+                    <rect key="frame" x="20" y="841" width="374" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -69,14 +76,17 @@
                 <constraint firstItem="sxF-Sg-IeB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="8Lh-D2-PKb"/>
                 <constraint firstItem="BLS-ct-a86" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HNF-I2-dZR"/>
                 <constraint firstItem="VOW-dz-vNN" firstAttribute="top" secondItem="sdb-LO-dtC" secondAttribute="bottom" constant="32" id="Iqr-5s-cjA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="trC-B6-yux" secondAttribute="trailing" constant="20" id="JQr-hz-Z7B"/>
                 <constraint firstItem="sxF-Sg-IeB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="87" id="O9r-C1-Rj9"/>
                 <constraint firstItem="Tay-Zb-KIk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SXk-Gz-sSh"/>
                 <constraint firstItem="VOW-dz-vNN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TBK-xJ-bAj"/>
                 <constraint firstItem="BLS-ct-a86" firstAttribute="top" secondItem="Tay-Zb-KIk" secondAttribute="bottom" constant="32" id="V84-wJ-Fsy"/>
                 <constraint firstItem="sxF-Sg-IeB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XXL-N7-yuQ"/>
                 <constraint firstItem="sdb-LO-dtC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YP0-ok-pYr"/>
+                <constraint firstItem="trC-B6-yux" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="dNa-XM-Sxf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sxF-Sg-IeB" secondAttribute="trailing" constant="87" id="jZh-fi-fEo"/>
                 <constraint firstItem="VOW-dz-vNN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="v2a-a5-2Yp"/>
+                <constraint firstItem="trC-B6-yux" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="zUA-yr-44m"/>
                 <constraint firstItem="Tay-Zb-KIk" firstAttribute="top" secondItem="VOW-dz-vNN" secondAttribute="bottom" constant="32" id="zqQ-Xa-nNS"/>
             </constraints>
             <point key="canvasLocation" x="132" y="132"/>

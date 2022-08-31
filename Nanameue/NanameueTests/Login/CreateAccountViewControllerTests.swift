@@ -46,4 +46,58 @@ class CreateAccountViewControllerTests: XCTestCase {
         XCTAssertEqual(vc.emailTextField.keyboardType, .emailAddress)
         XCTAssertEqual(vc.emailTextField.textContentType, .emailAddress)
     }
+    
+    func testErrorLabelForInputMissing() {
+        let vc = self.setupView()
+        vc.createButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(vc.errorLabel.text,"login_creation_field_missing".translate)
+        XCTAssertFalse(vc.errorLabel.isHidden, "error label should be visible")
+    }
+    
+    func testErrorWrongEmail() {
+        let vc = self.setupView()
+        vc.emailTextField.text = "test"
+        vc.passwordTextField.text = "testTest"
+        vc.passwordConfirmationTextField.text = "testTest"
+        vc.createButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(vc.errorLabel.text,"login_email_invalid".translate)
+        XCTAssertFalse(vc.errorLabel.isHidden, "error label should be visible")
+    }
+    
+    func testErrorLabelForPasswordTooShort() {
+        let vc = self.setupView()
+        vc.emailTextField.text = "test@test.fr"
+        vc.passwordTextField.text = "test"
+        vc.passwordConfirmationTextField.text = "test"
+        vc.createButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(vc.errorLabel.text,"login_password_too_short".translate)
+        XCTAssertFalse(vc.errorLabel.isHidden, "error label should be visible")
+    }
+    
+    func testErrorLabelForDifferentPassword() {
+        let vc = self.setupView()
+        vc.emailTextField.text = "test@test.fr"
+        vc.passwordTextField.text = "testtest"
+        vc.passwordConfirmationTextField.text = "testTest"
+        vc.createButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(vc.errorLabel.text,"login_password_different".translate)
+        XCTAssertFalse(vc.errorLabel.isHidden, "error label should be visible")
+    }
+    
+    func testErrorLabelShouldNotBeVisibleAnymore() {
+        let vc = self.setupView()
+        
+        vc.emailTextField.text = "test@test.fr"
+        vc.passwordTextField.text = "testtest"
+        vc.passwordConfirmationTextField.text = "testTest"
+        vc.createButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(vc.errorLabel.text,"login_password_different".translate)
+        XCTAssertFalse(vc.errorLabel.isHidden, "error label should be visible")
+        
+        //change value back to a correct one, should hide the label in the end
+        vc.passwordConfirmationTextField.text = "testtest"
+        vc.createButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(vc.errorLabel.isHidden, "error label should not be visible")
+        
+    }
 }
