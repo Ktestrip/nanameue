@@ -8,21 +8,22 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        var rootViewController: UIViewController!
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        if let user = LoginProviderController().currentUser {
-            // user is logged in. redirect to the app
-            print("current user exist !")
-            print(user.email)
-            print(user.id)
+
+        if  LoginProviderController().currentUser != nil {
+            rootViewController = ViewProvider.getViewController(view: .feedViewController)
         } else {
-            window?.rootViewController = ViewProvider.getViewController(view: .loginViewController)
+            rootViewController = ViewProvider.getViewController(view: .loginViewController)
         }
+        let navigation = UINavigationController(rootViewController: rootViewController)
+
+        window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
 

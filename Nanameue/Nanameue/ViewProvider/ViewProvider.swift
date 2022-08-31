@@ -10,12 +10,14 @@ import UIKit
 private enum NibName: String {
     case loginViewController = "LoginViewController"
     case createAccountViewController = "CreateAccountViewController"
+    case feedViewcontroller = "FeedViewController"
 }
 
 enum ViewProvider {
     enum AvailableView {
         case loginViewController
         case createAccountViewController(onAccountCreated: (() -> Void))
+        case feedViewController
     }
 
     static func getViewController(view: ViewProvider.AvailableView) -> UIViewController {
@@ -31,7 +33,11 @@ enum ViewProvider {
                 viewController.loginProvider = LoginProviderController()
                 viewController.onAccountCreated = onAccountCreated
                 return viewController
-
+            case .feedViewController:
+                let nibName = NibName.feedViewcontroller.rawValue
+                let viewController = FeedViewController(nibName: nibName, bundle: nil)
+                viewController.loginProvider = LoginProviderController()
+                return viewController
         }
     }
 }
