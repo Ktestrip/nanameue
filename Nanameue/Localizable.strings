@@ -20,3 +20,7 @@
 "login_email_missing" = "email is missing";
 "login_password_missing" = "password is missing";
 "login_created" = "account created, please log in";
+
+// MARK: - FEED SECTION
+
+"company_name" = "awesome company";
