@@ -38,6 +38,7 @@ class LoginViewController: UIViewController {
         self.passwordTextField.isSecureTextEntry = true
         self.connectButton.setTitle("login_connect_button".translate, for: .normal)
         self.createAccountButton.setTitle("login_create_account_button".translate, for: .normal)
+        self.statusLabel.isHidden = true
     }
 
     private func setupBehavior() {
@@ -57,9 +58,13 @@ class LoginViewController: UIViewController {
         // inform user which text field is not correct
         if email.isEmpty {
             self.textFieldInformationMissing(textField: self.emailTextField)
+            self.setupStatusLabel(content: "login_email_missing".translate, isError: true)
+            return
         }
         if password.isEmpty {
             self.textFieldInformationMissing(textField: self.passwordTextField)
+            self.setupStatusLabel(content: "login_password_missing".translate, isError: true)
+            return
         }
     }
 
@@ -72,7 +77,7 @@ class LoginViewController: UIViewController {
 
                 case .failure(let error):
                     // login did fail, inform user what went wrong
-                    print(error)
+                    self.setupStatusLabel(content: error.localizedDescription, isError: true)
             }
         }
     }
@@ -81,8 +86,19 @@ class LoginViewController: UIViewController {
         textField.shake()
     }
 
+    private func setupStatusLabel(content: String, isError: Bool = false) {
+        self.statusLabel.text = content
+        self.statusLabel.textColor = isError ? UIColor(named: "error") : UIColor(named: "labelColor")
+        self.statusLabel.isHidden = false
+    }
+
     @objc private func showCreateAccountView() {
-        let viewController = ViewProvider.getViewController(view: .createAccountViewController)
+        let viewController = ViewProvider
+            .getViewController(view: .createAccountViewController(onAccountCreated: self.onAccountCreated))
         self.present(viewController, animated: true)
+    }
+
+    private func onAccountCreated() {
+        self.setupStatusLabel(content: "login_created".translate)
     }
 }

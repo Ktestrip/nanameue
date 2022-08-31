@@ -13,3 +13,10 @@
 "login_password_confirm_placeholder" = "confirm password";
 "login_connect_button" = "sign in";
 "login_create_account_button" = "sign up";
+"login_email_invalid" = "invalid email";
+"login_password_too_short" = "password should be at least 6 characters long";
+"login_password_different" = "both password are different";
+"login_creation_field_missing" = "please fill all the fields";
+"login_email_missing" = "email is missing";
+"login_password_missing" = "password is missing";
+"login_created" = "account created, please log in";
