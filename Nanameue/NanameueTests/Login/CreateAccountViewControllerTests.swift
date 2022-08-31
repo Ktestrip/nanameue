@@ -12,7 +12,7 @@ import XCTest
 class CreateAccountViewControllerTests: XCTestCase {
     
     private func setupView() -> CreateAccountViewController {
-        let vc = ViewProvider.getViewController(view: .createAccountViewController)
+        let vc = ViewProvider.getViewController(view: .createAccountViewController(onAccountCreated: { }))
         //to trigger view will appear on vc, just add it to a view
         let view = UIView()
         view.addSubview(vc.view)
@@ -98,6 +98,20 @@ class CreateAccountViewControllerTests: XCTestCase {
         vc.passwordConfirmationTextField.text = "testtest"
         vc.createButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(vc.errorLabel.isHidden, "error label should not be visible")
-        
+    }
+    
+    func testOnAccountCreatedHasBeenCalled() {
+        let vc = self.setupView()
+        let expectation = self.expectation(description: #function)
+        let mock = LoginProviderMock()
+        mock.createAccountShouldSucceed = true
+        vc.loginProvider = mock
+        vc.onAccountCreated = { expectation.fulfill() }
+        // before hitting the button, label should not be visible
+        vc.emailTextField.text = "test@test.fr" // valid email
+        vc.passwordTextField.text = "testtest"
+        vc.passwordConfirmationTextField.text = "testtest"
+        vc.createButton.sendActions(for: .touchUpInside)
+        waitForExpectations(timeout: 0.5)
     }
 }

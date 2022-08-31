@@ -16,6 +16,8 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
 
     var loginProvider: LoginProvider?
+    // will be call once the user did create an account
+    var onAccountCreated: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,18 @@ class CreateAccountViewController: UIViewController {
     }
 
     private func setupBehavior() {
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.passwordConfirmationTextField.delegate = self
         self.createButton.addTarget(self, action: #selector(self.prepareForSignUp), for: .touchUpInside)
+        // just tap anywhere out of the keyboard to dismiss it
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     @objc private func prepareForSignUp() {
@@ -72,7 +85,22 @@ class CreateAccountViewController: UIViewController {
             return
         }
         self.errorLabel.isHidden = true
+        self.performSignUp(email: email, password: pass)
         // now all the conditions are up to perform a signUp
+    }
+
+    private func performSignUp(email: String, password: String) {
+        self.loginProvider?.createAccount(email: email, password: password) { res in
+            switch res {
+                case .success(_):
+                    // account has been created, return to the login page
+                    self.dismiss(animated: true)
+                    self.onAccountCreated?()
+                case .failure(let err):
+                    // display error to the user
+                    self.setErrorLabel(content: err.localizedDescription)
+            }
+        }
     }
 
     private func setErrorLabel(content: String) {
@@ -94,5 +122,13 @@ class CreateAccountViewController: UIViewController {
 
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+}
+
+extension CreateAccountViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
