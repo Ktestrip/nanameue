@@ -15,7 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewProvider.getViewController(view: .loginViewController)
+        if let user = LoginProviderController().currentUser {
+            // user is logged in. redirect to the app
+            print("current user exist !")
+            print(user.email)
+            print(user.id)
+        } else {
+            window?.rootViewController = ViewProvider.getViewController(view: .loginViewController)
+        }
         window?.makeKeyAndVisible()
     }
 
