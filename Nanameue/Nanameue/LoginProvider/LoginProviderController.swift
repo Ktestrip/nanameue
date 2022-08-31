@@ -9,11 +9,29 @@ import Foundation
 import FirebaseAuth
 
 class LoginProviderController: LoginProvider {
-    func performLogin(email: String, password: String, onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
-        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+    var currentUser: User? {
+        guard let user = Auth.auth().currentUser else {
+            return nil
+        }
+        // abstract Firebase user to a custom user type
+        // not to introduce firebase dependencies in other places than this file
+        // make it easier for futur potential change
+        return User(email: user.email ?? "", id: user.uid)
+    }
+
+    func performLogin(email: String, password: String, onCompletion: @escaping ((Result<User, Error>) -> Void)) {
+        Auth.auth().signIn(withEmail: email, password: password) { userInfo, error in
             guard let error = error else {
-                onCompletion(.success(true))
-                return
+                if let userInfo = userInfo {
+                    // abstract Firebase user to a custom user type
+                    // not to introduce firebase dependencies in other places than this file
+                    // make it easier for futuer potential change
+                    let user = User(email: userInfo.user.email ?? "", id: userInfo.user.uid)
+                    onCompletion(.success(user))
+                    return
+                }
+                // user can't be created, something wen't wrong
+                return onCompletion(.failure(CustomError.userCorrupted))
             }
             return onCompletion(.failure(error))
         }

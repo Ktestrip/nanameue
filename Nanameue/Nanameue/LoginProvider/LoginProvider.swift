@@ -8,6 +8,7 @@
 import Foundation
 
 protocol LoginProvider {
-    func performLogin(email: String, password: String, onCompletion: @escaping ((Result<Bool, Error>) -> Void))
+    var currentUser: User? { get }
+    func performLogin(email: String, password: String, onCompletion: @escaping ((Result<User, Error>) -> Void))
     func createAccount(email: String, password: String, onCompletion: @escaping ((Result<Bool, Error>) -> Void))
 }
