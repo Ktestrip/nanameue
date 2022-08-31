@@ -32,4 +32,15 @@ class ViewProviderTests: XCTestCase {
         // check that login provider has been ... provided
         XCTAssertNotNil(castedView.loginProvider)
     }
+    
+    func testFeedViewControllerConfiguration() {
+        let vc = ViewProvider.getViewController(view: .feedViewController)
+        guard let castedView = vc as? FeedViewController else {
+            // not the good type of object
+            XCTAssert(true, "viewController is not a FeedViewController")
+            return
+        }
+        // check that login provider has been ... provided
+        XCTAssertNotNil(castedView.loginProvider)
+    }
 }
