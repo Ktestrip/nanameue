@@ -66,6 +66,7 @@ class LoginViewControllerTests: XCTestCase {
     func testShouldCallLoginProvider() {
         let vc = self.setupView()
         let mock = LoginProviderMock()
+        mock.userToReturn = User(email: "", id: "")
         vc.loginProvider = mock
         vc.emailTextField.text = "test"
         vc.passwordTextField.text = "test"

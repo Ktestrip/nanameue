@@ -11,15 +11,18 @@ private enum MockError: Error {
     case random
 }
 class LoginProviderMock: LoginProvider {
+    var currentUser: User? { return userToReturn }
+    
+    var userToReturn : User?
     var performLoginHasBeenCalled = false
     var createAccountHasBeenCalled = false
     var performLoginShouldSucceed = false
     var createAccountShouldSucceed = false
     
-    func performLogin(email: String, password: String, onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
+    func performLogin(email: String, password: String, onCompletion: @escaping ((Result<User, Error>) -> Void)) {
         performLoginHasBeenCalled = true
         if self.performLoginShouldSucceed {
-            onCompletion(.success(true))
+            onCompletion(.success(userToReturn!))
             return
         }
         onCompletion(.failure(MockError.random))
