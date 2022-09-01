@@ -9,4 +9,6 @@ import Foundation
 
 enum CustomError: Error {
     case userCorrupted
+    case pictureUploadFailed(Error?)
+    case downloadURLFailed(Error?)
 }
