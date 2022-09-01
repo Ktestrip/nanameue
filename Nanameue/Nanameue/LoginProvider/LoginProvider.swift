@@ -11,4 +11,5 @@ protocol LoginProvider {
     var currentUser: User? { get }
     func performLogin(email: String, password: String, onCompletion: @escaping ((Result<User, Error>) -> Void))
     func createAccount(email: String, password: String, onCompletion: @escaping ((Result<Bool, Error>) -> Void))
+    func logOut(onCompletion: @escaping ((Result<Bool, Error>) -> Void))
 }

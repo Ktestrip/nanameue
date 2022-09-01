@@ -46,4 +46,13 @@ class LoginProviderController: LoginProvider {
             return onCompletion(.failure(error))
         }
     }
+
+    func logOut(onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
+        do {
+            try Auth.auth().signOut()
+            onCompletion(.success(true))
+        } catch let err {
+            onCompletion(.failure(err))
+        }
+    }
 }
