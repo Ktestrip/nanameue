@@ -16,8 +16,10 @@ class LoginProviderMock: LoginProvider {
     var userToReturn : User?
     var performLoginHasBeenCalled = false
     var createAccountHasBeenCalled = false
+    var logoutHasBeenCalled = false
     var performLoginShouldSucceed = false
     var createAccountShouldSucceed = false
+    var logOutShouldSucceed = false
     
     func performLogin(email: String, password: String, onCompletion: @escaping ((Result<User, Error>) -> Void)) {
         performLoginHasBeenCalled = true
@@ -38,4 +40,12 @@ class LoginProviderMock: LoginProvider {
         onCompletion(.failure(MockError.random))
     }
     
+    func logOut(onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
+        logoutHasBeenCalled = true
+        if self.logOutShouldSucceed {
+            onCompletion(.success(true))
+            return
+        }
+        onCompletion(.failure(MockError.random))
+    }
 }

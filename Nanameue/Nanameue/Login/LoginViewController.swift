@@ -72,9 +72,8 @@ class LoginViewController: UIViewController {
         self.loginProvider?.performLogin(email: email, password: password) { res in
             switch res {
                 case .success(_):
-                    // user did succesfully login, redirect to the app
-                    print("yay")
-
+                    let feedViewController = ViewProvider.getViewController(view: .feedViewController)
+                    self.navigationController?.setViewControllers([feedViewController], animated: true)
                 case .failure(let error):
                     // login did fail, inform user what went wrong
                     self.setupStatusLabel(content: error.localizedDescription, isError: true)

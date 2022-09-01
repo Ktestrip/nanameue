@@ -51,7 +51,15 @@ class FeedViewController: UIViewController {
     */
 
     @objc private func logout() {
-        print("logout")
+        loginProvider?.logOut { res in
+            switch res {
+                case .success(_):
+                    let loginViewController = ViewProvider.getViewController(view: .loginViewController)
+                    self.navigationController?.setViewControllers([loginViewController], animated: true)
+                case .failure(_):
+                    print("woops")
+            }
+        }
     }
 }
 
