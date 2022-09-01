@@ -11,11 +11,22 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var loginProvider: LoginProvider?
+    var postProvider: PostProvider?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.setupNavigationBarUI()
+        self.testImgUpload()
         // Do any additional setup after loading the view.
+    }
+
+    private func testImgUpload() {
+        let fileManager = FileManager.default
+        let cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let url = cacheDirectory.appendingPathComponent("noodle-test.jpeg")
+
+        print(url, "<---")
+        postProvider?.createPost(newPost: Post(), imageURL: url)
     }
 
     private func setupUI() {

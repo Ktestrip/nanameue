@@ -37,6 +37,7 @@ enum ViewProvider {
                 let nibName = NibName.feedViewcontroller.rawValue
                 let viewController = FeedViewController(nibName: nibName, bundle: nil)
                 viewController.loginProvider = LoginProviderController()
+                viewController.postProvider = PostProviderController()
                 return viewController
         }
     }
