@@ -63,7 +63,7 @@ class PostProviderController: PostProvider {
     }
 
     func deletePost(postToDelete: Post, onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
-        databaseRef?.child(postToDelete.id.uuidString).removeValue() { error, other in
+        databaseRef?.child(postToDelete.id.uuidString).removeValue() { error, _ in
             guard let error = error else {
                 onCompletion(.success(true))
                 return
@@ -83,7 +83,7 @@ class PostProviderController: PostProvider {
                 .setValue(json)
             onCompletion(.success(true))
         } catch let error {
-            onCompletion(.failure(CustomError.uploadPostFailed))
+            onCompletion(.failure(CustomError.uploadPostFailed(error)))
         }
     }
 
