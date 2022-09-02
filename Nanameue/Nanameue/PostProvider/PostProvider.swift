@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 protocol PostProvider {
-    func getPost()
-    func createPost(newPost: Post, imageURL: URL?)
-    func deletePost(postToDelete: Post)
+    func getPost(onCompletion: @escaping ((Result<[Post], Error>) -> Void))
+    func createPost(newPost: Post, imageURL: URL?, onCompletion: @escaping ((Result<Bool, Error>) -> Void))
+    func deletePost(postToDelete: Post, onCompletion: @escaping ((Result<Bool, Error>) -> Void))
 }
