@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:574760414806:ios:997d2cff9b768f448f95f7</string>
+	<key>DATABASE_URL</key>
+	<string>https://nanameue-c3fe4-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>

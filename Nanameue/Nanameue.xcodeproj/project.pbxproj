@@ -13,8 +13,11 @@
 		5972867728BCD29D004B721E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5972867628BCD29D004B721E /* Assets.xcassets */; };
 		5972867A28BCD29D004B721E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5972867828BCD29D004B721E /* LaunchScreen.storyboard */; };
 		5972868528BCD29D004B721E /* NanameueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972868428BCD29D004B721E /* NanameueTests.swift */; };
+		597F127D28C1300300379B95 /* PostProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F127C28C1300300379B95 /* PostProvider.swift */; };
+		597F127F28C1306000379B95 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F127E28C1306000379B95 /* Post.swift */; };
+		597F128128C130A600379B95 /* PostProviderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F128028C130A600379B95 /* PostProviderController.swift */; };
 		5990376D28BD465A000D1667 /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5990376C28BD465A000D1667 /* swiftlint.yml */; };
-		5990377028BD4753000D1667 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5990376F28BD4753000D1667 /* GoogleService-Info.plist */; };
+		5991CBDE28C265C300CFA211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5991CBDD28C265C300CFA211 /* GoogleService-Info.plist */; };
 		59975B8C28BFE26D00773388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8B28BFE26D00773388 /* User.swift */; };
 		59975B8E28BFE3EF00773388 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8D28BFE3EF00773388 /* CustomError.swift */; };
 		59975B9228BFE86700773388 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B9028BFE86700773388 /* FeedViewController.swift */; };
@@ -61,8 +64,11 @@
 		5972867B28BCD29D004B721E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5972868028BCD29D004B721E /* NanameueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanameueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5972868428BCD29D004B721E /* NanameueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanameueTests.swift; sourceTree = "<group>"; };
+		597F127C28C1300300379B95 /* PostProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProvider.swift; sourceTree = "<group>"; };
+		597F127E28C1306000379B95 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		597F128028C130A600379B95 /* PostProviderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProviderController.swift; sourceTree = "<group>"; };
 		5990376C28BD465A000D1667 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
-		5990376F28BD4753000D1667 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5991CBDD28C265C300CFA211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		59975B8B28BFE26D00773388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		59975B8D28BFE3EF00773388 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		59975B9028BFE86700773388 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +131,7 @@
 			children = (
 				59E3A1C428BE87BF00EF4F20 /* Localizable.strings */,
 				5990376C28BD465A000D1667 /* swiftlint.yml */,
-				5990376F28BD4753000D1667 /* GoogleService-Info.plist */,
+				5991CBDD28C265C300CFA211 /* GoogleService-Info.plist */,
 				5972866C28BCD29B004B721E /* Nanameue */,
 				5972868328BCD29D004B721E /* NanameueTests */,
 				5972866B28BCD29B004B721E /* Products */,
@@ -146,6 +152,7 @@
 		5972866C28BCD29B004B721E /* Nanameue */ = {
 			isa = PBXGroup;
 			children = (
+				597F127B28C12FCE00379B95 /* PostProvider */,
 				59975B8F28BFE84D00773388 /* Feed */,
 				59975B8A28BFE25B00773388 /* Model */,
 				59E3A1DA28BEAD0900EF4F20 /* ViewProvider */,
@@ -175,11 +182,21 @@
 			path = NanameueTests;
 			sourceTree = "<group>";
 		};
+		597F127B28C12FCE00379B95 /* PostProvider */ = {
+			isa = PBXGroup;
+			children = (
+				597F127C28C1300300379B95 /* PostProvider.swift */,
+				597F128028C130A600379B95 /* PostProviderController.swift */,
+			);
+			path = PostProvider;
+			sourceTree = "<group>";
+		};
 		59975B8A28BFE25B00773388 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				59975B8B28BFE26D00773388 /* User.swift */,
 				59975B8D28BFE3EF00773388 /* CustomError.swift */,
+				597F127E28C1306000379B95 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,13 +362,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5991CBDE28C265C300CFA211 /* GoogleService-Info.plist in Resources */,
 				59E3A1E228BEB13900EF4F20 /* CreateAccountViewController.xib in Resources */,
 				5972867A28BCD29D004B721E /* LaunchScreen.storyboard in Resources */,
 				5990376D28BD465A000D1667 /* swiftlint.yml in Resources */,
 				59E3A1BE28BE848C00EF4F20 /* LoginViewController.xib in Resources */,
 				59975B9328BFE86700773388 /* FeedViewController.xib in Resources */,
 				59E3A1C528BE87BF00EF4F20 /* Localizable.strings in Resources */,
-				5990377028BD4753000D1667 /* GoogleService-Info.plist in Resources */,
 				5972867728BCD29D004B721E /* Assets.xcassets in Resources */,
 				5972867528BCD29B004B721E /* Main.storyboard in Resources */,
 			);
@@ -477,6 +494,8 @@
 				59E3A1BD28BE848C00EF4F20 /* LoginViewController.swift in Sources */,
 				59E3A1DC28BEAD1A00EF4F20 /* ViewProvider.swift in Sources */,
 				59E3A1D628BE9FFE00EF4F20 /* ShakableTextField.swift in Sources */,
+				597F128128C130A600379B95 /* PostProviderController.swift in Sources */,
+				597F127F28C1306000379B95 /* Post.swift in Sources */,
 				5972866E28BCD29B004B721E /* AppDelegate.swift in Sources */,
 				59E3A1E128BEB13900EF4F20 /* CreateAccountViewController.swift in Sources */,
 				59975B8E28BFE3EF00773388 /* CustomError.swift in Sources */,
@@ -484,6 +503,7 @@
 				59975B8C28BFE26D00773388 /* User.swift in Sources */,
 				59975B9228BFE86700773388 /* FeedViewController.swift in Sources */,
 				5972867028BCD29B004B721E /* SceneDelegate.swift in Sources */,
+				597F127D28C1300300379B95 /* PostProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

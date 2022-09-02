@@ -11,11 +11,53 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var loginProvider: LoginProvider?
+    var postProvider: PostProvider?
+
+    private var posts: [Post]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.setupNavigationBarUI()
+        self.testCreatePost()
+        self.testGetPost()
         // Do any additional setup after loading the view.
+    }
+
+    private func testCreatePost() {
+        let post = Post(content: "test upload")
+        postProvider?.createPost(newPost: post, imageURL: nil) { res in
+            switch res {
+                case .success(_):
+                    print("post uploaded", post.id)
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+        }
+    }
+    private func testGetPost() {
+        postProvider?.getPost() { res in
+            switch res {
+                case .success(let fetchedPost):
+                    self.posts = fetchedPost.sorted(by: { $0.date > $1.date })
+                    self.testDeletePost()
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+        }
+    }
+
+    private func testDeletePost() {
+        if let post = self.posts?.first {
+            postProvider?.deletePost(postToDelete: post) { res in
+                switch res {
+                    case .success(_):
+                        print("post deleted !")
+                    case .failure(let err):
+                        print(err)
+                }
+            }
+        }
     }
 
     private func setupUI() {
