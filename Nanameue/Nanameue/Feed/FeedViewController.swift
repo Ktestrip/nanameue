@@ -12,21 +12,52 @@ class FeedViewController: UIViewController {
 
     var loginProvider: LoginProvider?
     var postProvider: PostProvider?
+
+    private var posts: [Post]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.setupNavigationBarUI()
-        self.testImgUpload()
+        self.testCreatePost()
+        self.testGetPost()
         // Do any additional setup after loading the view.
     }
 
-    private func testImgUpload() {
-        let fileManager = FileManager.default
-        let cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let url = cacheDirectory.appendingPathComponent("noodle-test.jpeg")
+    private func testCreatePost() {
+        let post = Post(content: "test upload")
+        postProvider?.createPost(newPost: post, imageURL: nil) { res in
+            switch res {
+                case .success(_):
+                    print("post uploaded", post.id)
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+        }
+    }
+    private func testGetPost() {
+        postProvider?.getPost() { res in
+            switch res {
+                case .success(let fetchedPost):
+                    self.posts = fetchedPost.sorted(by: { $0.date > $1.date })
+                    self.testDeletePost()
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+        }
+    }
 
-        print(url, "<---")
-        postProvider?.createPost(newPost: Post(), imageURL: url)
+    private func testDeletePost() {
+        if let post = self.posts?.first {
+            postProvider?.deletePost(postToDelete: post) { res in
+                switch res {
+                    case .success(_):
+                        print("post deleted !")
+                    case .failure(let err):
+                        print(err)
+                }
+            }
+        }
     }
 
     private func setupUI() {
