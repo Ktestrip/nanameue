@@ -21,6 +21,7 @@
 		5991CBE228C2934400CFA211 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5991CBE028C2934400CFA211 /* CreatePostViewController.swift */; };
 		5991CBE328C2934400CFA211 /* CreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5991CBE128C2934400CFA211 /* CreatePostViewController.xib */; };
 		5991CBE628C34B9000CFA211 /* CreatePostViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5991CBE528C34B9000CFA211 /* CreatePostViewControllerTests.swift */; };
+		5991CBE828C3749900CFA211 /* ViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5991CBE728C3749900CFA211 /* ViewController+extension.swift */; };
 		59975B8C28BFE26D00773388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8B28BFE26D00773388 /* User.swift */; };
 		59975B8E28BFE3EF00773388 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8D28BFE3EF00773388 /* CustomError.swift */; };
 		59975B9228BFE86700773388 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B9028BFE86700773388 /* FeedViewController.swift */; };
@@ -75,6 +76,7 @@
 		5991CBE028C2934400CFA211 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		5991CBE128C2934400CFA211 /* CreatePostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePostViewController.xib; sourceTree = "<group>"; };
 		5991CBE528C34B9000CFA211 /* CreatePostViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewControllerTests.swift; sourceTree = "<group>"; };
+		5991CBE728C3749900CFA211 /* ViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+extension.swift"; sourceTree = "<group>"; };
 		59975B8B28BFE26D00773388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		59975B8D28BFE3EF00773388 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		59975B9028BFE86700773388 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		5972866128BCD29B004B721E = {
 			isa = PBXGroup;
 			children = (
+				5991CBE728C3749900CFA211 /* ViewController+extension.swift */,
 				59E3A1C428BE87BF00EF4F20 /* Localizable.strings */,
 				5990376C28BD465A000D1667 /* swiftlint.yml */,
 				5991CBDD28C265C300CFA211 /* GoogleService-Info.plist */,
@@ -520,6 +523,7 @@
 				5991CBE228C2934400CFA211 /* CreatePostViewController.swift in Sources */,
 				59E3A1BD28BE848C00EF4F20 /* LoginViewController.swift in Sources */,
 				59E3A1DC28BEAD1A00EF4F20 /* ViewProvider.swift in Sources */,
+				5991CBE828C3749900CFA211 /* ViewController+extension.swift in Sources */,
 				59E3A1D628BE9FFE00EF4F20 /* ShakableTextField.swift in Sources */,
 				597F128128C130A600379B95 /* PostProviderController.swift in Sources */,
 				597F127F28C1306000379B95 /* Post.swift in Sources */,
@@ -708,6 +712,7 @@
 				DEVELOPMENT_TEAM = 2C69642RJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Nanameue/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "For sharing your thoughts !";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -737,6 +742,7 @@
 				DEVELOPMENT_TEAM = 2C69642RJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Nanameue/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "For sharing your thoughts !";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
