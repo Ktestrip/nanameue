@@ -42,8 +42,17 @@ class LoginViewController: UIViewController {
     }
 
     private func setupBehavior() {
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         self.connectButton.addTarget(self, action: #selector(self.onConnectButtonTap), for: .touchUpInside)
         self.createAccountButton.addTarget(self, action: #selector(self.showCreateAccountView), for: .touchUpInside)
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     @objc private func onConnectButtonTap() {
@@ -94,10 +103,23 @@ class LoginViewController: UIViewController {
     @objc private func showCreateAccountView() {
         let viewController = ViewProvider
             .getViewController(view: .createAccountViewController(onAccountCreated: self.onAccountCreated))
+        if let sheet = viewController.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.preferredCornerRadius = 20
+            sheet.prefersGrabberVisible = true
+        }
         self.present(viewController, animated: true)
     }
 
     private func onAccountCreated() {
         self.setupStatusLabel(content: "login_created".translate)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
