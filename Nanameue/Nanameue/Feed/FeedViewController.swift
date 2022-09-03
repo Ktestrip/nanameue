@@ -9,6 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var createPostButton: UIButton!
 
     var loginProvider: LoginProvider?
     var postProvider: PostProvider?
@@ -18,6 +19,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        self.setupBehavior()
         self.setupNavigationBarUI()
         self.testCreatePost()
         self.testGetPost()
@@ -35,6 +37,7 @@ class FeedViewController: UIViewController {
             }
         }
     }
+
     private func testGetPost() {
         postProvider?.getPost() { res in
             switch res {
@@ -64,6 +67,13 @@ class FeedViewController: UIViewController {
         self.title = "company_name".translate
         self.tableView.backgroundColor = .yellow
         self.view.backgroundColor = UIColor(named: "mainColor")
+        self.createPostButton.backgroundColor = UIColor(named: "buttonColor")
+        self.createPostButton.layer.cornerRadius = self.createPostButton.frame.width / 2
+        self.createPostButton.clipsToBounds = true
+    }
+
+    private func setupBehavior() {
+        self.createPostButton.addTarget(self, action: #selector(self.openCreatePostView), for: .touchUpInside)
     }
 
     private func setupNavigationBarUI() {
@@ -102,6 +112,18 @@ class FeedViewController: UIViewController {
                     print("woops")
             }
         }
+    }
+
+    @objc private func openCreatePostView() {
+        let vc = CreatePostViewController(nibName: "CreatePostViewController", bundle: nil)
+        let nav = UINavigationController(rootViewController: vc)
+
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.preferredCornerRadius = 20
+            sheet.prefersGrabberVisible = true
+        }
+        present(nav, animated: true)
     }
 }
 

@@ -18,6 +18,9 @@
 		597F128128C130A600379B95 /* PostProviderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F128028C130A600379B95 /* PostProviderController.swift */; };
 		5990376D28BD465A000D1667 /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5990376C28BD465A000D1667 /* swiftlint.yml */; };
 		5991CBDE28C265C300CFA211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5991CBDD28C265C300CFA211 /* GoogleService-Info.plist */; };
+		5991CBE228C2934400CFA211 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5991CBE028C2934400CFA211 /* CreatePostViewController.swift */; };
+		5991CBE328C2934400CFA211 /* CreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5991CBE128C2934400CFA211 /* CreatePostViewController.xib */; };
+		5991CBE628C34B9000CFA211 /* CreatePostViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5991CBE528C34B9000CFA211 /* CreatePostViewControllerTests.swift */; };
 		59975B8C28BFE26D00773388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8B28BFE26D00773388 /* User.swift */; };
 		59975B8E28BFE3EF00773388 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B8D28BFE3EF00773388 /* CustomError.swift */; };
 		59975B9228BFE86700773388 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59975B9028BFE86700773388 /* FeedViewController.swift */; };
@@ -69,6 +72,9 @@
 		597F128028C130A600379B95 /* PostProviderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProviderController.swift; sourceTree = "<group>"; };
 		5990376C28BD465A000D1667 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		5991CBDD28C265C300CFA211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5991CBE028C2934400CFA211 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		5991CBE128C2934400CFA211 /* CreatePostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePostViewController.xib; sourceTree = "<group>"; };
+		5991CBE528C34B9000CFA211 /* CreatePostViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewControllerTests.swift; sourceTree = "<group>"; };
 		59975B8B28BFE26D00773388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		59975B8D28BFE3EF00773388 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		59975B9028BFE86700773388 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +197,23 @@
 			path = PostProvider;
 			sourceTree = "<group>";
 		};
+		5991CBDF28C2932B00CFA211 /* CreatePost */ = {
+			isa = PBXGroup;
+			children = (
+				5991CBE028C2934400CFA211 /* CreatePostViewController.swift */,
+				5991CBE128C2934400CFA211 /* CreatePostViewController.xib */,
+			);
+			path = CreatePost;
+			sourceTree = "<group>";
+		};
+		5991CBE428C34B7A00CFA211 /* CreatePost */ = {
+			isa = PBXGroup;
+			children = (
+				5991CBE528C34B9000CFA211 /* CreatePostViewControllerTests.swift */,
+			);
+			path = CreatePost;
+			sourceTree = "<group>";
+		};
 		59975B8A28BFE25B00773388 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +227,7 @@
 		59975B8F28BFE84D00773388 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				5991CBDF28C2932B00CFA211 /* CreatePost */,
 				59975B9028BFE86700773388 /* FeedViewController.swift */,
 				59975B9128BFE86700773388 /* FeedViewController.xib */,
 			);
@@ -213,6 +237,7 @@
 		59975B9428BFF4B600773388 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				5991CBE428C34B7A00CFA211 /* CreatePost */,
 				59975B9528BFF4CD00773388 /* FeedViewControllerTest.swift */,
 			);
 			path = Feed;
@@ -368,6 +393,7 @@
 				5990376D28BD465A000D1667 /* swiftlint.yml in Resources */,
 				59E3A1BE28BE848C00EF4F20 /* LoginViewController.xib in Resources */,
 				59975B9328BFE86700773388 /* FeedViewController.xib in Resources */,
+				5991CBE328C2934400CFA211 /* CreatePostViewController.xib in Resources */,
 				59E3A1C528BE87BF00EF4F20 /* Localizable.strings in Resources */,
 				5972867728BCD29D004B721E /* Assets.xcassets in Resources */,
 				5972867528BCD29B004B721E /* Main.storyboard in Resources */,
@@ -491,6 +517,7 @@
 			files = (
 				59E3A1C928BE88EB00EF4F20 /* String+extensions.swift in Sources */,
 				59E3A1D228BE995F00EF4F20 /* LoginProvider.swift in Sources */,
+				5991CBE228C2934400CFA211 /* CreatePostViewController.swift in Sources */,
 				59E3A1BD28BE848C00EF4F20 /* LoginViewController.swift in Sources */,
 				59E3A1DC28BEAD1A00EF4F20 /* ViewProvider.swift in Sources */,
 				59E3A1D628BE9FFE00EF4F20 /* ShakableTextField.swift in Sources */,
@@ -513,6 +540,7 @@
 			files = (
 				59E3A1E428BEB62100EF4F20 /* CreateAccountViewControllerTests.swift in Sources */,
 				59E3A1D928BEA84600EF4F20 /* LoginProviderMock.swift in Sources */,
+				5991CBE628C34B9000CFA211 /* CreatePostViewControllerTests.swift in Sources */,
 				59975B9628BFF4CD00773388 /* FeedViewControllerTest.swift in Sources */,
 				59E3A1CC28BE8B3900EF4F20 /* LoginViewControllerTests.swift in Sources */,
 				59E3A1DE28BEAE7D00EF4F20 /* ViewProviderTests.swift in Sources */,

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController" customModule="Nanameue" customModuleProvider="target">
             <connections>
+                <outlet property="createPostButton" destination="BYR-Bc-4o2" id="Vcu-FM-kLb"/>
                 <outlet property="tableView" destination="MX6-IR-Ntj" id="uj4-V9-r20"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,13 +24,24 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYR-Bc-4o2">
+                    <rect key="frame" x="358" y="806" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="0de-qm-PbE"/>
+                        <constraint firstAttribute="height" constant="36" id="cqh-fo-zn8"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="+"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="MX6-IR-Ntj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1pM-r2-R8l"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BYR-Bc-4o2" secondAttribute="bottom" constant="20" id="IQT-h6-i7F"/>
                 <constraint firstItem="MX6-IR-Ntj" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Ia4-YH-gyN"/>
                 <constraint firstAttribute="bottom" secondItem="MX6-IR-Ntj" secondAttribute="bottom" id="ViS-2a-Z1r"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BYR-Bc-4o2" secondAttribute="trailing" constant="20" id="ZKb-Xg-psT"/>
                 <constraint firstItem="MX6-IR-Ntj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sgQ-2e-AVo"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="131.91964285714286"/>
