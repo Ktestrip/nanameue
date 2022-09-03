@@ -24,3 +24,11 @@
 // MARK: - FEED SECTION
 
 "company_name" = "awesome company";
+
+
+// MARK: - CREAT POST SECTION
+
+"create_share_post" = "share post";
+"create_add_picture" = "add a picture";
+"create_text_placeholder" = "what are your thoughts?";
+"create_disable_share_button" = "say something";
