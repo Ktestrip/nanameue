@@ -19,11 +19,18 @@ class CreateAccountViewController: UIViewController {
     // will be call once the user did create an account
     var onAccountCreated: (() -> Void)?
 
+    private var activeTextField: UITextField?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.setupBehavior()
-        // Do any additional setup after loading the view.
+        self.registerForKeyboardNotifications()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.unregisterForKeyboardNotifications()
     }
 
     private func setupUI() {
@@ -37,8 +44,12 @@ class CreateAccountViewController: UIViewController {
         self.emailTextField.textContentType = .emailAddress
         self.passwordTextField.placeholder = "login_password_placeholder".translate
         self.passwordTextField.isSecureTextEntry = true
+        self.passwordTextField.autocorrectionType = .no
+        self.passwordTextField.spellCheckingType = .no
         self.passwordConfirmationTextField.placeholder = "login_password_confirm_placeholder".translate
         self.passwordConfirmationTextField.isSecureTextEntry = true
+        self.passwordConfirmationTextField.autocorrectionType = .no
+        self.passwordConfirmationTextField.spellCheckingType = .no
         self.createButton.setTitle("login_create_account_button".translate, for: .normal)
         self.errorLabel.textColor = UIColor(named: "error")
         self.errorLabel.isHidden = true
@@ -126,9 +137,40 @@ class CreateAccountViewController: UIViewController {
 }
 
 extension CreateAccountViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
+    }
+
+    @objc override func keyboardWillShow(notification: NSNotification) {
+        let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        guard let keyboardSize = value?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+            return
+        }
+        if let activeTextField = activeTextField {
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY
+            let topOfKeyboard = self.view.frame.height - keyboardSize.height
+            // if the bottom of Textfield is below the top of keyboard, move up
+            if bottomOfTextField > topOfKeyboard {
+                UIView.animate(withDuration: 0.2) {
+                   // make the textfield be just on top of the keyboard and add 12 just to make it a bit nicer
+                    self.view.frame.origin.y = 0 - (bottomOfTextField - topOfKeyboard) - 12
+                }
+            }
+        }
+    }
+
+    @objc override func keyboardWillHide(notification: NSNotification) {
+        // move back the root view origin to zero
+        self.view.frame.origin.y = 0
     }
 }

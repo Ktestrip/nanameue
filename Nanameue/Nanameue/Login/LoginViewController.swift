@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     //will be used only to keep track of login status
     @IBOutlet weak var statusLabel: UILabel!
 
+    private var activeTextField: UITextField?
     // login method provider
     var loginProvider: LoginProvider?
 
@@ -23,6 +24,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.setupBehavior()
         self.setupUI()
+        self.registerForKeyboardNotifications()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.unregisterForKeyboardNotifications()
     }
 
     private func setupUI() {
@@ -42,8 +49,17 @@ class LoginViewController: UIViewController {
     }
 
     private func setupBehavior() {
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         self.connectButton.addTarget(self, action: #selector(self.onConnectButtonTap), for: .touchUpInside)
         self.createAccountButton.addTarget(self, action: #selector(self.showCreateAccountView), for: .touchUpInside)
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     @objc private func onConnectButtonTap() {
@@ -94,10 +110,54 @@ class LoginViewController: UIViewController {
     @objc private func showCreateAccountView() {
         let viewController = ViewProvider
             .getViewController(view: .createAccountViewController(onAccountCreated: self.onAccountCreated))
+        if let sheet = viewController.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.preferredCornerRadius = 20
+            sheet.prefersGrabberVisible = true
+        }
         self.present(viewController, animated: true)
     }
 
     private func onAccountCreated() {
         self.setupStatusLabel(content: "login_created".translate)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
+    }
+
+    @objc override func keyboardWillShow(notification: NSNotification) {
+        let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        guard let keyboardSize = value?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+            return
+        }
+        if let activeTextField = activeTextField {
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY
+            let topOfKeyboard = self.view.frame.height - keyboardSize.height
+            // if the bottom of Textfield is below the top of keyboard, move up
+            if bottomOfTextField > topOfKeyboard {
+                UIView.animate(withDuration: 0.2) {
+                    // make the textfield be just on top of the keyboard and add 12 just to make it a bit nicer
+                    self.view.frame.origin.y = 0 - (bottomOfTextField - topOfKeyboard) - 12
+                }
+            }
+        }
+    }
+
+    @objc override func keyboardWillHide(notification: NSNotification) {
+        // move back the root view origin to zero
+        self.view.frame.origin.y = 0
     }
 }
