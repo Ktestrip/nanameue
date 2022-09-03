@@ -77,11 +77,18 @@ class CreatePostViewController: UIViewController {
     }
 
     private func setupBehavior() {
-        self.openPhotoButton.addTarget(self, action: #selector(self.openLibrary), for: .touchUpInside)
+        self.openPhotoButton.addTarget(self, action: #selector(self.checkLibraryPermission), for: .touchUpInside)
         self.sharePostButton.addTarget(self, action: #selector(self.sharePost), for: .touchUpInside)
         self.removePictureButton.addTarget(self, action: #selector(self.removePicture), for: .touchUpInside)
         self.postTextView.delegate = self
         self.sharePostButton.isEnabled = false
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     private func applyRadiusOf(_ size: CGFloat, forView: UIView) {
@@ -106,24 +113,13 @@ class CreatePostViewController: UIViewController {
         * |                 |
         * |-----------------|
         */
-        
+
         let xPoint = self.imageContainerView.frame.width + self.imageContainerView.frame.origin.x - self.removePictureButton.frame.width / 1.5
         let yPoint = self.imageContainerView.frame.origin.y - self.removePictureButton.frame.height / 3
         self.removePictureButton.frame.origin = CGPoint(x: xPoint, y: yPoint)
         self.view.addSubview(removePictureButton)
     }
-
-    @objc private func openLibrary() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        if let sheet = imagePicker.sheetPresentationController {
-            sheet.detents = [.medium()]
-        }
-        self.resizeDetent(detent: .large)
-        self.present(imagePicker, animated: true)
-    }
-
+    
     @objc private func removePicture() {
         self.postImageView.image = nil
         self.changeImagecontainerConstraints()
@@ -131,11 +127,11 @@ class CreatePostViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-
+    
     @objc private func sharePost() {
         print("share")
     }
-
+    
     private func changeImagecontainerConstraints() {
         guard self.imageContainerHeight.constant == 0 else {
             self.sharePostButton.isEnabled = !self.postTextView.text.isEmpty
@@ -147,6 +143,61 @@ class CreatePostViewController: UIViewController {
         self.imageContainerHeight.constant = 128
         self.addRemovePictureButton()
         return
+    }
+
+    // MARK: - library access methods
+    
+    @objc private func openLibrary() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        if let sheet = imagePicker.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        self.resizeDetent(detent: .large)
+        self.present(imagePicker, animated: true)
+    }
+
+    @objc private func checkLibraryPermission() {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+            case .authorized:
+                self.openLibrary()
+                return
+            case .notDetermined:
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == PHAuthorizationStatus.authorized {
+                        self.openLibrary()
+                        return
+                    }
+                }
+            default:
+                self.redirectToSettingDialog()
+        }
+    }
+
+    private func redirectToSettingDialog() {
+        let actionSheet = UIAlertController(title: "create_need_access_library_title".translate,
+                                            message: "create_need_access_library_content".translate,
+                                            preferredStyle: .actionSheet)
+        let settingsRedirect = UIAlertAction(title: "create_settings_redirect".translate,
+                                                  style: .default) { _ in
+            // Open app privacy settings
+            self.redirectToSettings()
+        }
+        actionSheet.addAction(settingsRedirect)
+        let cancelAction = UIAlertAction(title: "cancel".translate, style: .cancel, handler: nil)
+        actionSheet.addAction(cancelAction)
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+
+    private func redirectToSettings() {
+        // Open app privacy settings
+        guard let url = URL(string: UIApplication.openSettingsURLString),
+              UIApplication.shared.canOpenURL(url) else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 
