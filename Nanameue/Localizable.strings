@@ -6,6 +6,10 @@
   
 */
 
+// MARK: - GENERAL SECTION
+
+"cancel" = "cancel";
+
 // MARK: - LOGIN SECTION
 
 "login_email_placeholder" = "email";
@@ -32,3 +36,6 @@
 "create_add_picture" = "add a picture";
 "create_text_placeholder" = "what are your thoughts?";
 "create_disable_share_button" = "say something";
+"create_need_access_library_title" = "⊂(▀¯▀⊂) allow access (つ▀¯▀)つ";
+"create_need_access_library_content" = "we need to access your library to be able to share your thoughts ! please allow access in your settings";
+"create_settings_redirect" = "settings";
