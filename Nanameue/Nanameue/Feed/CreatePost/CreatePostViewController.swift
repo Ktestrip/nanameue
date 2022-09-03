@@ -19,6 +19,7 @@ class CreatePostViewController: UIViewController {
 
     private var placeholderLabel: UILabel!
     private var removePictureButton: UIButton!
+    private var activeTextField: UITextField?
 
     var onPostCreated: ((Post?) -> Void)?
     var postProvider: PostProvider?
@@ -114,12 +115,14 @@ class CreatePostViewController: UIViewController {
         * |-----------------|
         */
 
-        let xPoint = self.imageContainerView.frame.width + self.imageContainerView.frame.origin.x - self.removePictureButton.frame.width / 1.5
+        let xPoint = self.imageContainerView.frame.width +
+                    self.imageContainerView.frame.origin.x -
+                    self.removePictureButton.frame.width / 1.5
         let yPoint = self.imageContainerView.frame.origin.y - self.removePictureButton.frame.height / 3
         self.removePictureButton.frame.origin = CGPoint(x: xPoint, y: yPoint)
         self.view.addSubview(removePictureButton)
     }
-    
+
     @objc private func removePicture() {
         self.postImageView.image = nil
         self.changeImagecontainerConstraints()
@@ -127,11 +130,11 @@ class CreatePostViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
+
     @objc private func sharePost() {
         print("share")
     }
-    
+
     private func changeImagecontainerConstraints() {
         guard self.imageContainerHeight.constant == 0 else {
             self.sharePostButton.isEnabled = !self.postTextView.text.isEmpty
@@ -146,7 +149,7 @@ class CreatePostViewController: UIViewController {
     }
 
     // MARK: - library access methods
-    
+
     @objc private func openLibrary() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -221,5 +224,10 @@ extension CreatePostViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
         sharePostButton.isEnabled = !textView.text.isEmpty
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
