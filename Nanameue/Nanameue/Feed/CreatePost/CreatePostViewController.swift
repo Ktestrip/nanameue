@@ -19,7 +19,6 @@ class CreatePostViewController: UIViewController {
 
     private var placeholderLabel: UILabel!
     private var removePictureButton: UIButton!
-    private var activeTextField: UITextField?
 
     var onPostCreated: ((Post?) -> Void)?
     var postProvider: PostProvider?
