@@ -44,11 +44,14 @@ class PostTableViewCell: UITableViewCell {
         self.contentLabel.text = post.content
         self.dateLabel.text = dateFormatter.string(from: post.date)
         if let stringUrl = post.imageUrl {
+            // image will be async downloaded. display activity indicator during download
             let url = URL(string: stringUrl)
             self.createActivityIndicator()
             self.postImageView.kf.setImage(with: url) { _ in
+                // image has been downloaded, error or not, activity indicator needs to be remove
                 self.removeActivityIndicator()
             }
+            // update constraints to make imageview visible
             self.imageViewHeightConstraint.constant = 128
             UIView.animate(withDuration: 0.2) {
                 self.layoutIfNeeded()
