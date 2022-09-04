@@ -35,6 +35,7 @@ class PostProviderController: PostProvider {
                 // for each entry of json, try to decode them as Post
                 let posts: [Post] = json.compactMap {
                     guard let data = $0 else {
+                        onCompletion(.failure(CustomError.fetchingPostError))
                         return nil
                     }
                     let post = try? self.decoder.decode(Post.self, from: data)
