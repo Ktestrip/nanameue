@@ -50,8 +50,8 @@ class FeedViewController: UIViewController {
                         self.posts.remove(at: index)
                         self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .bottom)
                     }
-                case .failure(let err):
-                    print("error -> ", err)
+                case .failure(let error):
+                    ErrorModal.dispatch(error: error)
             }
         }
     }
@@ -105,8 +105,8 @@ class FeedViewController: UIViewController {
                 case .success(_):
                     let loginViewController = ViewProvider.getViewController(view: .loginViewController)
                     self.navigationController?.setViewControllers([loginViewController], animated: true)
-                case .failure(_):
-                    print("woops")
+                case .failure(let error):
+                    ErrorModal.dispatch(error: error)
             }
         }
     }

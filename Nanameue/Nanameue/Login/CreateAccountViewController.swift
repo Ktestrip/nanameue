@@ -107,9 +107,8 @@ class CreateAccountViewController: UIViewController {
                     // account has been created, return to the login page
                     self.dismiss(animated: true)
                     self.onAccountCreated?()
-                case .failure(let err):
-                    // display error to the user
-                    self.setErrorLabel(content: err.localizedDescription)
+                case .failure(let error):
+                    ErrorModal.dispatch(error: error)
             }
         }
     }

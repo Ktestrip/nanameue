@@ -91,8 +91,7 @@ class LoginViewController: UIViewController {
                     let feedViewController = ViewProvider.getViewController(view: .feedViewController)
                     self.navigationController?.setViewControllers([feedViewController], animated: true)
                 case .failure(let error):
-                    // login did fail, inform user what went wrong
-                    self.setupStatusLabel(content: error.localizedDescription, isError: true)
+                    ErrorModal.dispatch(error: error)
             }
         }
     }
