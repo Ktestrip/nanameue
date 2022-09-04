@@ -113,6 +113,23 @@ class CreatePostViewControllerTests: XCTestCase {
         XCTAssertEqual(numberOfView, vc.view.subviews.count)
         XCTAssertNil(vc.postImageView.image)
         XCTAssertEqual(vc.imageContainerHeight.constant, 0)
+    }
+    
+    func testCreatePostTriggerCallback() {
+        let vc = self.setupView()
+        let post = Post(content: "test post")
+        let mock = PostProviderMock()
+        vc.postProvider = mock
+        mock.postThatShouldBeReturn = post
         
+        let expectation = self.expectation(description: #function)
+        vc.onPostCreated = { returnedPost in
+            expectation.fulfill()
+            XCTAssertEqual(returnedPost.content, post.content)
+        }
+        vc.postTextView.text = "only to match criteria to unlock share post possibility"
+        vc.textViewDidChange(vc.postTextView)
+        vc.sharePostButton.sendActions(for: .touchUpInside)
+        waitForExpectations(timeout: 0.5)
     }
 }
