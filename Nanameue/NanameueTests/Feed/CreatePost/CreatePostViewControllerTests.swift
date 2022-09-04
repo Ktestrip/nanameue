@@ -21,13 +21,12 @@ class CreatePostViewControllerTests: XCTestCase {
     
     func testUISetup() {
         let vc = self.setupView()
-        
-        XCTAssertEqual(vc.view.backgroundColor, UIColor(named: "mainColor"))
+      
         XCTAssertEqual(vc.sharePostButton.title(for: .normal), "create_share_post".translate)
-        XCTAssertEqual(vc.sharePostButton.backgroundColor, UIColor(named: "mainColorDarker"))
+        XCTAssertEqual(vc.sharePostButton.backgroundColor,  AssetsColor.mainColorDark)
         XCTAssertEqual(vc.openPhotoButton.title(for: .normal), "create_add_picture".translate)
-        XCTAssertEqual(vc.openPhotoButton.backgroundColor, UIColor(named: "mainColorDarker"))
-        XCTAssertEqual(vc.textViewContainer.backgroundColor, UIColor(named: "mainColorDarker"))
+        XCTAssertEqual(vc.openPhotoButton.backgroundColor,  AssetsColor.mainColorDark)
+        XCTAssertEqual(vc.textViewContainer.backgroundColor,  AssetsColor.mainColorDark)
         XCTAssertEqual(vc.imageContainerHeight.constant, 0)
     }
     
