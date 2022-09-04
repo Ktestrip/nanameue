@@ -49,6 +49,11 @@
 		59E3A1E428BEB62100EF4F20 /* CreateAccountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E3A1E328BEB62100EF4F20 /* CreateAccountViewControllerTests.swift */; };
 		59FAFFD028C4AE41002AC5D7 /* TableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFCF28C4AE41002AC5D7 /* TableViewControllerTest.swift */; };
 		59FAFFD228C4AE94002AC5D7 /* PostTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFD128C4AE94002AC5D7 /* PostTableViewCellTests.swift */; };
+		59FAFFD828C4BAF4002AC5D7 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFD628C4BAF4002AC5D7 /* ErrorViewController.swift */; };
+		59FAFFD928C4BAF4002AC5D7 /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59FAFFD728C4BAF4002AC5D7 /* ErrorViewController.xib */; };
+		59FAFFDB28C4BD05002AC5D7 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFDA28C4BD05002AC5D7 /* ErrorManager.swift */; };
+		59FAFFDD28C4BE64002AC5D7 /* Notifications+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFDC28C4BE64002AC5D7 /* Notifications+Extensions.swift */; };
+		59FAFFE028C4C7C7002AC5D7 /* ErrorViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFDF28C4C7C7002AC5D7 /* ErrorViewControllerTest.swift */; };
 		A3F49BBAC4C89A6BE72DC519 /* Pods_Nanameue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017C7C68E0CC5A1447EE1515 /* Pods_Nanameue.framework */; };
 		E2825674AD417AC16C4544F3 /* Pods_NanameueTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31094F3F9131696A0B0C30C /* Pods_NanameueTests.framework */; };
 /* End PBXBuildFile section */
@@ -113,6 +118,11 @@
 		59E3A1E328BEB62100EF4F20 /* CreateAccountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewControllerTests.swift; sourceTree = "<group>"; };
 		59FAFFCF28C4AE41002AC5D7 /* TableViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerTest.swift; sourceTree = "<group>"; };
 		59FAFFD128C4AE94002AC5D7 /* PostTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCellTests.swift; sourceTree = "<group>"; };
+		59FAFFD628C4BAF4002AC5D7 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		59FAFFD728C4BAF4002AC5D7 /* ErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
+		59FAFFDA28C4BD05002AC5D7 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		59FAFFDC28C4BE64002AC5D7 /* Notifications+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Extensions.swift"; sourceTree = "<group>"; };
+		59FAFFDF28C4C7C7002AC5D7 /* ErrorViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTest.swift; sourceTree = "<group>"; };
 		7189B058481754EEBAC7C9C3 /* Pods-Nanameue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanameue.release.xcconfig"; path = "Target Support Files/Pods-Nanameue/Pods-Nanameue.release.xcconfig"; sourceTree = "<group>"; };
 		742BFB4B953A63EE32BA9CCF /* Pods-NanameueTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanameueTests.release.xcconfig"; path = "Target Support Files/Pods-NanameueTests/Pods-NanameueTests.release.xcconfig"; sourceTree = "<group>"; };
 		965804952C0FE73B158FE220 /* Pods-NanameueTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanameueTests.debug.xcconfig"; path = "Target Support Files/Pods-NanameueTests/Pods-NanameueTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +184,7 @@
 		5972866C28BCD29B004B721E /* Nanameue */ = {
 			isa = PBXGroup;
 			children = (
+				59FAFFD328C4BACD002AC5D7 /* Error */,
 				5991CBEC28C48EA100CFA211 /* Extension */,
 				5991CBEB28C48E9100CFA211 /* UI */,
 				597F127B28C12FCE00379B95 /* PostProvider */,
@@ -195,6 +206,7 @@
 		5972868328BCD29D004B721E /* NanameueTests */ = {
 			isa = PBXGroup;
 			children = (
+				59FAFFDE28C4C7B8002AC5D7 /* Error */,
 				59FAFFCE28C4AE28002AC5D7 /* CellTests */,
 				59975B9428BFF4B600773388 /* Feed */,
 				59E3A1D728BEA82B00EF4F20 /* Mock */,
@@ -246,6 +258,7 @@
 			children = (
 				59E3A1C828BE88EB00EF4F20 /* String+extensions.swift */,
 				5991CBE728C3749900CFA211 /* ViewController+extension.swift */,
+				59FAFFDC28C4BE64002AC5D7 /* Notifications+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -335,6 +348,24 @@
 				59FAFFD128C4AE94002AC5D7 /* PostTableViewCellTests.swift */,
 			);
 			path = CellTests;
+			sourceTree = "<group>";
+		};
+		59FAFFD328C4BACD002AC5D7 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				59FAFFD628C4BAF4002AC5D7 /* ErrorViewController.swift */,
+				59FAFFD728C4BAF4002AC5D7 /* ErrorViewController.xib */,
+				59FAFFDA28C4BD05002AC5D7 /* ErrorManager.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		59FAFFDE28C4C7B8002AC5D7 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				59FAFFDF28C4C7C7002AC5D7 /* ErrorViewControllerTest.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		8BDA026EB2FABC49574015B8 /* Pods */ = {
@@ -444,6 +475,7 @@
 				59975B9328BFE86700773388 /* FeedViewController.xib in Resources */,
 				5991CBE328C2934400CFA211 /* CreatePostViewController.xib in Resources */,
 				59E3A1C528BE87BF00EF4F20 /* Localizable.strings in Resources */,
+				59FAFFD928C4BAF4002AC5D7 /* ErrorViewController.xib in Resources */,
 				5972867728BCD29D004B721E /* Assets.xcassets in Resources */,
 				5972867528BCD29B004B721E /* Main.storyboard in Resources */,
 			);
@@ -568,13 +600,16 @@
 				5991CBF728C49F2C00CFA211 /* IdentifiableCell.swift in Sources */,
 				59E3A1D228BE995F00EF4F20 /* LoginProvider.swift in Sources */,
 				5991CBE228C2934400CFA211 /* CreatePostViewController.swift in Sources */,
+				59FAFFDB28C4BD05002AC5D7 /* ErrorManager.swift in Sources */,
 				59E3A1BD28BE848C00EF4F20 /* LoginViewController.swift in Sources */,
 				59E3A1DC28BEAD1A00EF4F20 /* ViewProvider.swift in Sources */,
 				5991CBF428C4989F00CFA211 /* PostTableViewCell.swift in Sources */,
+				59FAFFD828C4BAF4002AC5D7 /* ErrorViewController.swift in Sources */,
 				5991CBE828C3749900CFA211 /* ViewController+extension.swift in Sources */,
 				59E3A1D628BE9FFE00EF4F20 /* ShakableTextField.swift in Sources */,
 				597F128128C130A600379B95 /* PostProviderController.swift in Sources */,
 				5991CBEA28C48C4100CFA211 /* UIAnimatedButton.swift in Sources */,
+				59FAFFDD28C4BE64002AC5D7 /* Notifications+Extensions.swift in Sources */,
 				597F127F28C1306000379B95 /* Post.swift in Sources */,
 				5972866E28BCD29B004B721E /* AppDelegate.swift in Sources */,
 				59E3A1E128BEB13900EF4F20 /* CreateAccountViewController.swift in Sources */,
@@ -600,6 +635,7 @@
 				59E3A1DE28BEAE7D00EF4F20 /* ViewProviderTests.swift in Sources */,
 				59E3A1CF28BE939200EF4F20 /* String+extensionsTests.swift in Sources */,
 				59FAFFD228C4AE94002AC5D7 /* PostTableViewCellTests.swift in Sources */,
+				59FAFFE028C4C7C7002AC5D7 /* ErrorViewControllerTest.swift in Sources */,
 				5972868528BCD29D004B721E /* NanameueTests.swift in Sources */,
 				59FAFFD028C4AE41002AC5D7 /* TableViewControllerTest.swift in Sources */,
 			);
