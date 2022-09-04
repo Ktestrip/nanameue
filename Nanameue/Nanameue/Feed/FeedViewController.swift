@@ -14,65 +14,48 @@ class FeedViewController: UIViewController {
     var loginProvider: LoginProvider?
     var postProvider: PostProvider?
 
-    private var posts: [Post]?
+    private var posts: [Post] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        self.registerCell()
         self.setupBehavior()
         self.setupNavigationBarUI()
-        self.testCreatePost()
-        self.testGetPost()
+        self.getPost()
         // Do any additional setup after loading the view.
     }
 
-    private func testCreatePost() {
-        let post = Post(content: "test upload")
-        postProvider?.createPost(newPost: post, imageURL: nil) { res in
-            switch res {
-                case .success(_):
-                    print("post uploaded", post.id)
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
-        }
+    private func registerCell() {
+        self.tableView.register(PostTableViewCell.nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
 
-    private func testGetPost() {
+    private func getPost() {
         postProvider?.getPost() { res in
             switch res {
                 case .success(let fetchedPost):
                     self.posts = fetchedPost.sorted(by: { $0.date > $1.date })
-                    self.testDeletePost()
+                    self.tableView.reloadData()
                 case .failure(let error):
                     print(error.localizedDescription)
-            }
-        }
-    }
-
-    private func testDeletePost() {
-        if let post = self.posts?.first {
-            postProvider?.deletePost(postToDelete: post) { res in
-                switch res {
-                    case .success(_):
-                        print("post deleted !")
-                    case .failure(let err):
-                        print(err)
-                }
             }
         }
     }
 
     private func setupUI() {
         self.title = "company_name".translate
-        self.tableView.backgroundColor = .yellow
         self.view.backgroundColor = UIColor(named: "mainColor")
         self.createPostButton.backgroundColor = UIColor(named: "buttonColor")
         self.createPostButton.layer.cornerRadius = self.createPostButton.frame.width / 2
         self.createPostButton.clipsToBounds = true
+        self.tableView.backgroundColor = .clear
+        self.tableView.separatorColor = .clear
+        self.tableView.allowsSelection = false
     }
 
     private func setupBehavior() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.createPostButton.addTarget(self, action: #selector(self.openCreatePostView), for: .touchUpInside)
     }
 
@@ -115,27 +98,32 @@ class FeedViewController: UIViewController {
     }
 
     @objc private func openCreatePostView() {
-        let vc = ViewProvider.getViewController(view: .createPostViewController(onPostCreated: { post in
-            self.posts?.append(post)
-            self.testGetPost()
-        }))
-        let nav = UINavigationController(rootViewController: vc)
+        let viewController = ViewProvider.getViewController(view: .createPostViewController { post in
+            self.posts.insert(post, at: 0)
+            self.tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
+        })
+        let navigation = UINavigationController(rootViewController: viewController)
 
-        if let sheet = nav.sheetPresentationController {
+        if let sheet = navigation.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.preferredCornerRadius = 20
             sheet.prefersGrabberVisible = true
         }
-        present(nav, animated: true)
+        present(navigation, animated: true)
     }
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.posts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView
+            .dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setupCell(post: self.posts[indexPath.row])
+        return cell
     }
 }
