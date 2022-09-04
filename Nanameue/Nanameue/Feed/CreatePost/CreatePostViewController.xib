@@ -16,7 +16,7 @@
                 <outlet property="openPhotoButton" destination="2us-52-cCT" id="Sgq-YQ-9oU"/>
                 <outlet property="postImageView" destination="3hU-mJ-p0f" id="ivm-YO-BXn"/>
                 <outlet property="postTextView" destination="ymx-MC-2aA" id="qVK-eO-Ck6"/>
-                <outlet property="sharePostButton" destination="h7c-Du-etk" id="Znv-eP-hOH"/>
+                <outlet property="sharePostButton" destination="h7c-Du-etk" id="04K-Tt-V67"/>
                 <outlet property="textViewContainer" destination="wCR-re-V2O" id="rP6-ec-2MQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

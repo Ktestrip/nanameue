@@ -10,7 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: ShakableTextField!
     @IBOutlet weak var emailTextField: ShakableTextField!
-    @IBOutlet weak var connectButton: UIButton!
+    @IBOutlet weak var connectButton: UIAnimatedButton!
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var logoImageView: UIImageView!
     //will be used only to keep track of login status
@@ -33,9 +33,9 @@ class LoginViewController: UIViewController {
     }
 
     private func setupUI() {
-        self.view.backgroundColor = UIColor(named: "mainColor")
+        self.view.backgroundColor = AssetsColor.mainColor
         self.logoImageView.contentMode = .scaleAspectFit
-        self.logoImageView.image = UIImage(named: "logo")
+        self.logoImageView.image = AssetsIcon.logo
         self.emailTextField.placeholder = "login_email_placeholder".translate
         self.emailTextField.autocorrectionType = .no
         self.emailTextField.spellCheckingType = .no
@@ -46,6 +46,12 @@ class LoginViewController: UIViewController {
         self.connectButton.setTitle("login_connect_button".translate, for: .normal)
         self.createAccountButton.setTitle("login_create_account_button".translate, for: .normal)
         self.statusLabel.isHidden = true
+
+        self.connectButton.layer.borderColor = UIColor.black.cgColor
+        self.connectButton.layer.borderWidth = 0.5
+        self.connectButton.layer.cornerRadius = 12.0
+        self.connectButton.clipsToBounds = true
+        self.connectButton.backgroundColor = AssetsColor.mainColorDark
     }
 
     private func setupBehavior() {
@@ -85,7 +91,9 @@ class LoginViewController: UIViewController {
     }
 
     private func performConnection(email: String, password: String) {
+        self.connectButton.animateActivity()
         self.loginProvider?.performLogin(email: email, password: password) { res in
+            self.connectButton.stopActivity()
             switch res {
                 case .success(_):
                     let feedViewController = ViewProvider.getViewController(view: .feedViewController)
@@ -102,7 +110,7 @@ class LoginViewController: UIViewController {
 
     private func setupStatusLabel(content: String, isError: Bool = false) {
         self.statusLabel.text = content
-        self.statusLabel.textColor = isError ? UIColor(named: "error") : UIColor(named: "labelColor")
+        self.statusLabel.textColor = isError ?  AssetsColor.errorColor :  AssetsColor.labelColor
         self.statusLabel.isHidden = false
     }
 

@@ -39,11 +39,12 @@ class CreatePostViewController: UIViewController {
         self.applyRadiusOf(12.0, forView: self.openPhotoButton)
         self.applyRadiusOf(12.0, forView: self.sharePostButton)
 
-        self.imageContainerView.backgroundColor = UIColor(named: "mainColorDarker")
-        self.openPhotoButton.backgroundColor = UIColor(named: "mainColorDarker")
-        self.sharePostButton.backgroundColor = UIColor(named: "mainColorDarker")
-        self.postTextView.backgroundColor = UIColor(named: "mainColorDarker")
-        self.textViewContainer.backgroundColor = UIColor(named: "mainColorDarker")
+        self.imageContainerView.backgroundColor = AssetsColor.mainColorDark
+        self.openPhotoButton.backgroundColor = AssetsColor.mainColorDark
+        self.postTextView.backgroundColor = AssetsColor.mainColorDark
+        self.textViewContainer.backgroundColor = AssetsColor.mainColorDark
+        self.sharePostButton.backgroundColor = AssetsColor.mainColorDark
+        self.postImageView.backgroundColor = AssetsColor.mainColorDark
 
         self.sharePostButton.setTitle("create_disable_share_button".translate, for: .disabled)
         self.sharePostButton.setTitle("create_share_post".translate, for: .normal)
@@ -74,7 +75,7 @@ class CreatePostViewController: UIViewController {
         self.removePictureButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         self.removePictureButton.layer.cornerRadius = self.removePictureButton.frame.height / 2
         self.removePictureButton.backgroundColor = .white
-        self.removePictureButton.setBackgroundImage(UIImage(named: "closeIcon"), for: .normal)
+        self.removePictureButton.setBackgroundImage(AssetsIcon.closeIcon, for: .normal)
     }
 
     private func setupBehavior() {
@@ -83,6 +84,8 @@ class CreatePostViewController: UIViewController {
         self.removePictureButton.addTarget(self, action: #selector(self.removePicture), for: .touchUpInside)
         self.postTextView.delegate = self
         self.sharePostButton.isEnabled = false
+        self.presentationController?.delegate = self
+        self.navigationController?.presentationController?.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -141,6 +144,7 @@ class CreatePostViewController: UIViewController {
             guard let self = self else {
                 return
             }
+            self.sharePostButton.stopActivity()
             self.globalInteraction(enable: true)
             switch res {
                 case .success(let post):
@@ -175,14 +179,16 @@ class CreatePostViewController: UIViewController {
     // MARK: - library access methods
 
     @objc private func openLibrary() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        if let sheet = imagePicker.sheetPresentationController {
-            sheet.detents = [.medium()]
+        DispatchQueue.main.async {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            if let sheet = imagePicker.sheetPresentationController {
+                sheet.detents = [.medium()]
+            }
+            self.resizeDetent(detent: .large)
+            self.present(imagePicker, animated: true)
         }
-        self.resizeDetent(detent: .large)
-        self.present(imagePicker, animated: true)
     }
 
     @objc private func checkLibraryPermission() {
@@ -254,5 +260,11 @@ extension CreatePostViewController: UITextViewDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension CreatePostViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return !(self.sharePostButton.isButtonAnimating() ?? true)
     }
 }

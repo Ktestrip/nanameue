@@ -12,7 +12,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var emailTextField: ShakableTextField!
     @IBOutlet weak var passwordTextField: ShakableTextField!
     @IBOutlet weak var passwordConfirmationTextField: ShakableTextField!
-    @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var createButton: UIAnimatedButton!
     @IBOutlet weak var errorLabel: UILabel!
 
     var loginProvider: LoginProvider?
@@ -34,9 +34,9 @@ class CreateAccountViewController: UIViewController {
     }
 
     private func setupUI() {
-        self.view.backgroundColor = UIColor(named: "mainColor")
+        self.view.backgroundColor = AssetsColor.mainColor
         self.logoImageView.contentMode = .scaleAspectFit
-        self.logoImageView.image = UIImage(named: "logo")
+        self.logoImageView.image = AssetsIcon.logo
         self.emailTextField.placeholder = "login_email_placeholder".translate
         self.emailTextField.autocorrectionType = .no
         self.emailTextField.spellCheckingType = .no
@@ -51,8 +51,14 @@ class CreateAccountViewController: UIViewController {
         self.passwordConfirmationTextField.autocorrectionType = .no
         self.passwordConfirmationTextField.spellCheckingType = .no
         self.createButton.setTitle("login_create_account_button".translate, for: .normal)
-        self.errorLabel.textColor = UIColor(named: "error")
+        self.errorLabel.textColor = AssetsColor.errorColor
         self.errorLabel.isHidden = true
+
+        self.createButton.layer.borderColor = UIColor.black.cgColor
+        self.createButton.layer.borderWidth = 0.5
+        self.createButton.layer.cornerRadius = 12.0
+        self.createButton.clipsToBounds = true
+        self.createButton.backgroundColor = AssetsColor.mainColorDark
     }
 
     private func setupBehavior() {
@@ -101,7 +107,9 @@ class CreateAccountViewController: UIViewController {
     }
 
     private func performSignUp(email: String, password: String) {
+        self.createButton.animateActivity()
         self.loginProvider?.createAccount(email: email, password: password) { res in
+            self.createButton.stopActivity()
             switch res {
                 case .success(_):
                     // account has been created, return to the login page
