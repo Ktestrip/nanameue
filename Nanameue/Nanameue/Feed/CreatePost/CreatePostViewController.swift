@@ -171,7 +171,7 @@ class CreatePostViewController: UIViewController {
             return
         }
         self.sharePostButton.isEnabled = true
-        self.imageContainerHeight.constant = 128
+        self.imageContainerHeight.constant = self.view.frame.height / 6
         self.addRemovePictureButton()
         return
     }
@@ -265,6 +265,6 @@ extension CreatePostViewController: UITextViewDelegate {
 
 extension CreatePostViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
-        return !(self.sharePostButton.isButtonAnimating() ?? true)
+        return !(self.sharePostButton.isButtonAnimating() ?? false)
     }
 }
