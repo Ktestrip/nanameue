@@ -47,7 +47,7 @@ class PostProviderController: PostProvider {
         }
     }
 
-    func createPost(newPost: Post, imageURL: URL?, onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
+    func createPost(newPost: Post, imageURL: URL?, onCompletion: @escaping ((Result<Post, Error>) -> Void)) {
         guard let url = imageURL else {
             self.savePost(post: newPost, onCompletion: onCompletion)
             return
@@ -72,7 +72,7 @@ class PostProviderController: PostProvider {
         }
     }
 
-    private func savePost(post: Post, imageUrl: URL? = nil, onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
+    private func savePost(post: Post, imageUrl: URL? = nil, onCompletion: @escaping ((Result<Post, Error>) -> Void)) {
         if let url = imageUrl {
             post.setImageUrl(url: url)
         }
@@ -81,7 +81,7 @@ class PostProviderController: PostProvider {
             let json = try JSONSerialization.jsonObject(with: data)
             databaseRef?.child("\(post.id.uuidString)")
                 .setValue(json)
-            onCompletion(.success(true))
+            onCompletion(.success(post))
         } catch let error {
             onCompletion(.failure(CustomError.uploadPostFailed(error)))
         }
