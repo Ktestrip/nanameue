@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
     var postProvider: PostProvider?
 
     private var posts: [Post] = []
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +31,11 @@ class FeedViewController: UIViewController {
         self.tableView.register(PostTableViewCell.nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
 
-    private func getPost() {
+    @objc private func getPost() {
         postProvider?.getPost() { res in
             switch res {
                 case .success(let fetchedPost):
+                    self.refreshControl.endRefreshing()
                     self.posts = fetchedPost.sorted(by: { $0.date > $1.date })
                     self.tableView.reloadData()
                 case .failure(let error):
@@ -58,8 +60,8 @@ class FeedViewController: UIViewController {
 
     private func setupUI() {
         self.title = "company_name".translate
-        self.view.backgroundColor = UIColor(named: "mainColor")
-        self.createPostButton.backgroundColor = UIColor(named: "buttonColor")
+        self.view.backgroundColor = AssetsColor.mainColor
+        self.createPostButton.backgroundColor = AssetsColor.buttonColor
         self.createPostButton.layer.cornerRadius = self.createPostButton.frame.width / 2
         self.createPostButton.clipsToBounds = true
         self.tableView.backgroundColor = .clear
@@ -71,6 +73,8 @@ class FeedViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.createPostButton.addTarget(self, action: #selector(self.openCreatePostView), for: .touchUpInside)
+        self.refreshControl.addTarget(self, action: #selector(self.getPost), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
     }
 
     private func setupNavigationBarUI() {
@@ -78,7 +82,7 @@ class FeedViewController: UIViewController {
         let rightNavigationBarView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         let logoutImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
 
-        logoutImageView.image = UIImage(named: "logout")?.withTintColor(.white)
+        logoutImageView.image = AssetsIcon.logout?.withTintColor(.white)
         logoutImageView.contentMode = UIView.ContentMode.scaleAspectFit
         logoutImageView.layer.masksToBounds = true
         rightNavigationBarView.addSubview(logoutImageView)
@@ -86,7 +90,7 @@ class FeedViewController: UIViewController {
         rightNavigationBarView.addGestureRecognizer(tapGesture)
         let rightBarButton = UIBarButtonItem(customView: rightNavigationBarView)
         self.navigationItem.rightBarButtonItem = rightBarButton
-        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "mainColor")
+        self.navigationController?.navigationBar.backgroundColor = AssetsColor.mainColor
     }
 
     /*

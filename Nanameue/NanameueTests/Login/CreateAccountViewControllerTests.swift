@@ -30,7 +30,7 @@ class CreateAccountViewControllerTests: XCTestCase {
     
     func testBackgroundColor() {
         let vc = self.setupView()
-        XCTAssertEqual(vc.view.backgroundColor , UIColor(named: "mainColor"))
+        XCTAssertEqual(vc.view.backgroundColor , AssetsColor.mainColor)
     }
     
     func testPasswordIsSecureEntry() {

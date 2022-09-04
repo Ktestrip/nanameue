@@ -29,7 +29,7 @@ class LoginViewControllerTests: XCTestCase {
     
     func testBackgroundColor() {
         let vc = self.setupView()
-        XCTAssertEqual(vc.view.backgroundColor , UIColor(named: "mainColor"))
+        XCTAssertEqual(vc.view.backgroundColor , AssetsColor.mainColor)
     }
     
     func testPasswordIsSecureEntry() {
@@ -82,7 +82,7 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertTrue(vc.statusLabel.isHidden)
         vc.connectButton.sendActions(for: .touchUpInside)
         XCTAssertFalse(vc.statusLabel.isHidden)
-        XCTAssertEqual(vc.statusLabel.textColor, UIColor(named: "error"))
+        XCTAssertEqual(vc.statusLabel.textColor,  AssetsColor.errorColor)
         XCTAssertEqual(vc.statusLabel.text, "login_password_missing".translate)
     }
     
@@ -94,7 +94,7 @@ class LoginViewControllerTests: XCTestCase {
         
         vc.connectButton.sendActions(for: .touchUpInside)
         XCTAssertFalse(vc.statusLabel.isHidden)
-        XCTAssertEqual(vc.statusLabel.textColor, UIColor(named: "error"))
+        XCTAssertEqual(vc.statusLabel.textColor, AssetsColor.errorColor)
         XCTAssertEqual(vc.statusLabel.text, "login_email_missing".translate)
     }
 }

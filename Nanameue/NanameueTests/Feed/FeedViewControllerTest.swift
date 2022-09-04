@@ -24,7 +24,7 @@ class FeedViewControllerTests: XCTestCase {
  
     func testUISetup() {
         let vc = self.setupView()
-        XCTAssertEqual(vc.view.backgroundColor, UIColor(named: "mainColor"))
+        XCTAssertEqual(vc.view.backgroundColor,  AssetsColor.mainColor)
         XCTAssertEqual(vc.title, "company_name".translate)
         XCTAssertNotNil(vc.navigationController)
     }

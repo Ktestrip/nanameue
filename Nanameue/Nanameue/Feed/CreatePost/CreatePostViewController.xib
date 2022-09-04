@@ -16,7 +16,7 @@
                 <outlet property="openPhotoButton" destination="2us-52-cCT" id="Sgq-YQ-9oU"/>
                 <outlet property="postImageView" destination="3hU-mJ-p0f" id="ivm-YO-BXn"/>
                 <outlet property="postTextView" destination="ymx-MC-2aA" id="qVK-eO-Ck6"/>
-                <outlet property="sharePostButton" destination="h7c-Du-etk" id="Znv-eP-hOH"/>
+                <outlet property="sharePostButton" destination="h7c-Du-etk" id="04K-Tt-V67"/>
                 <outlet property="textViewContainer" destination="wCR-re-V2O" id="rP6-ec-2MQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -78,7 +78,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7c-Du-etk" customClass="UIAnimatedButton" customModule="Nanameue" customModuleProvider="target">
-                    <rect key="frame" x="147" y="810" width="120" height="32"/>
+                    <rect key="frame" x="147" y="818" width="120" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="845-ah-Ade"/>
                         <constraint firstAttribute="width" constant="120" id="nC7-Fo-7WA"/>
@@ -91,14 +91,14 @@
             <color key="backgroundColor" name="mainColor"/>
             <constraints>
                 <constraint firstItem="wCR-re-V2O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5Ip-Xe-8Gf"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="h7c-Du-etk" secondAttribute="bottom" constant="20" id="8YI-JN-cMB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="h7c-Du-etk" secondAttribute="bottom" constant="12" id="8YI-JN-cMB"/>
                 <constraint firstItem="wCR-re-V2O" firstAttribute="top" secondItem="VX0-m3-ekZ" secondAttribute="bottom" constant="32" id="Gg0-2a-usx"/>
                 <constraint firstItem="VX0-m3-ekZ" firstAttribute="top" secondItem="2us-52-cCT" secondAttribute="bottom" constant="8" symbolic="YES" id="Sg7-W2-g49"/>
                 <constraint firstItem="h7c-Du-etk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wlz-um-dE3"/>
                 <constraint firstItem="2us-52-cCT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jqD-bf-Qe6"/>
                 <constraint firstItem="VX0-m3-ekZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="w0E-KE-qCy"/>
                 <constraint firstItem="2us-52-cCT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="w9l-sp-qZi"/>
-                <constraint firstItem="h7c-Du-etk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wCR-re-V2O" secondAttribute="bottom" constant="32" id="xYA-HX-PZ6"/>
+                <constraint firstItem="h7c-Du-etk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wCR-re-V2O" secondAttribute="bottom" constant="24" id="xYA-HX-PZ6"/>
             </constraints>
             <point key="canvasLocation" x="139" y="95"/>
         </view>
