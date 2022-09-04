@@ -10,7 +10,7 @@ import PhotosUI
 
 class CreatePostViewController: UIViewController {
     @IBOutlet weak var openPhotoButton: UIButton!
-    @IBOutlet weak var sharePostButton: UIButton!
+    @IBOutlet weak var sharePostButton: UIAnimatedButton!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageContainerHeight: NSLayoutConstraint!
@@ -19,8 +19,9 @@ class CreatePostViewController: UIViewController {
 
     private var placeholderLabel: UILabel!
     private var removePictureButton: UIButton!
+    private var imageURL: URL?
 
-    var onPostCreated: ((Post?) -> Void)?
+    var onPostCreated: ((Post) -> Void)?
     var postProvider: PostProvider?
 
     override func viewDidLoad() {
@@ -131,7 +132,31 @@ class CreatePostViewController: UIViewController {
     }
 
     @objc private func sharePost() {
-        print("share")
+        let post = Post(content: self.postTextView.text)
+        self.sharePostButton.animateActivity()
+        self.globalInteraction(enable: false)
+        self.postProvider?.createPost(newPost: post, imageURL: self.imageURL) { [weak self] res in
+            // only good reason to capture self here, is that the user could dismiss the view before the end of the call
+            // if such thing happen, self might be de init
+            guard let self = self else {
+                return
+            }
+            self.globalInteraction(enable: true)
+            switch res {
+                case .success(let post):
+                    self.onPostCreated?(post)
+                    self.dismiss(animated: true)
+                case .failure(let error):
+                    print("error -> ", error)
+            }
+        }
+    }
+
+    // disable any possible interaction with the view
+    private func globalInteraction(enable: Bool) {
+        self.removePictureButton.isEnabled = enable
+        self.postTextView.isEditable = enable
+        self.openPhotoButton.isEnabled = enable
     }
 
     private func changeImagecontainerConstraints() {
@@ -207,6 +232,7 @@ extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             self.postImageView.image = image
+            self.imageURL = info[.imageURL] as? URL
             self.changeImagecontainerConstraints()
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()

@@ -115,7 +115,10 @@ class FeedViewController: UIViewController {
     }
 
     @objc private func openCreatePostView() {
-        let vc = CreatePostViewController(nibName: "CreatePostViewController", bundle: nil)
+        let vc = ViewProvider.getViewController(view: .createPostViewController(onPostCreated: { post in
+            self.posts?.append(post)
+            self.testGetPost()
+        }))
         let nav = UINavigationController(rootViewController: vc)
 
         if let sheet = nav.sheetPresentationController {

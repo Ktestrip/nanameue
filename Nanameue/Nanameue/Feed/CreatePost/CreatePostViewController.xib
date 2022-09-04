@@ -77,7 +77,7 @@
                         <constraint firstAttribute="trailing" secondItem="ymx-MC-2aA" secondAttribute="trailing" constant="8" id="vfm-Q3-bqp"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7c-Du-etk">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7c-Du-etk" customClass="UIAnimatedButton" customModule="Nanameue" customModuleProvider="target">
                     <rect key="frame" x="147" y="810" width="120" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="845-ah-Ade"/>
