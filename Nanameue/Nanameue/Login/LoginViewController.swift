@@ -47,11 +47,16 @@ class LoginViewController: UIViewController {
         self.createAccountButton.setTitle("login_create_account_button".translate, for: .normal)
         self.statusLabel.isHidden = true
 
-        self.connectButton.layer.borderColor = UIColor.black.cgColor
-        self.connectButton.layer.borderWidth = 0.5
-        self.connectButton.layer.cornerRadius = 12.0
-        self.connectButton.clipsToBounds = true
-        self.connectButton.backgroundColor = AssetsColor.mainColorDark
+        self.configureUIButton(button: connectButton)
+        self.configureUIButton(button: createAccountButton)
+    }
+
+    private func configureUIButton(button: UIButton) {
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 0.5
+        button.layer.cornerRadius = 12.0
+        button.clipsToBounds = true
+        button.backgroundColor = AssetsColor.mainColorDark
     }
 
     private func setupBehavior() {
