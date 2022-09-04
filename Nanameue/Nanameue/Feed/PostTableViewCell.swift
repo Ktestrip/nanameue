@@ -17,6 +17,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
 
     private var activityIndicatorView: NVActivityIndicatorView?
+    private var onDelete: ((Post) -> Void)?
+    private var post: Post?
     private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, yyyy 'at' hh:mm"
@@ -39,8 +41,12 @@ class PostTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
     }
 
-    func setupCell(post: Post) {
+    func setupCell(post: Post, onDelete: @escaping ((Post) -> Void)) {
+        self.post = post
+        self.onDelete = onDelete
         self.postImageView.image = nil
+        // if cell is reused and previous cell add constraints up for image view, constant will still be 128
+        self.imageViewHeightConstraint.constant = 0
         self.contentLabel.text = post.content
         self.dateLabel.text = dateFormatter.string(from: post.date)
         if let stringUrl = post.imageUrl {
@@ -57,6 +63,8 @@ class PostTableViewCell: UITableViewCell {
                 self.layoutIfNeeded()
             }
         }
+        self.deleteButton.addTarget(self, action: #selector(self.onDeleteButtonTap), for: .touchUpInside)
+        self.layoutIfNeeded()
     }
 
     private func createActivityIndicator() {
@@ -70,6 +78,13 @@ class PostTableViewCell: UITableViewCell {
         self.postImageView.addSubview(activityIndicator)
         self.activityIndicatorView = activityIndicator
         self.activityIndicatorView?.startAnimating()
+    }
+
+    @objc private func onDeleteButtonTap() {
+        guard let post = self.post else {
+            return
+        }
+        self.onDelete?(post)
     }
 
     private func removeActivityIndicator() {
