@@ -21,7 +21,7 @@ extension UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
     }
-    
+
     func unregisterForKeyboardNotifications() {
         NotificationCenter.default.removeObserver(
             self,
@@ -36,9 +36,9 @@ extension UIViewController {
             name: Notification.Name(UIResponder.keyboardDidChangeFrameNotification.rawValue),
             object: nil)
     }
-    
+
     @objc open func keyboardWillShow(notification: NSNotification) {}
-    
+
     @objc open func keyboardWillHide(notification: NSNotification) {}
 
 }
