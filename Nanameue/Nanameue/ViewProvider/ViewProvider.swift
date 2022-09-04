@@ -12,6 +12,7 @@ private enum NibName: String {
     case createAccountViewController = "CreateAccountViewController"
     case feedViewcontroller = "FeedViewController"
     case createPostViewController = "CreatePostViewController"
+    case errorViewController = "ErrorViewController"
 }
 
 enum ViewProvider {
@@ -20,6 +21,7 @@ enum ViewProvider {
         case createAccountViewController(onAccountCreated: (() -> Void))
         case feedViewController
         case createPostViewController(onPostCreated: ((Post) -> Void))
+        case errorView(error: Error)
     }
 
     static func getViewController(view: ViewProvider.AvailableView) -> UIViewController {
@@ -46,6 +48,11 @@ enum ViewProvider {
                 let viewController = CreatePostViewController(nibName: nibName, bundle: nil)
                 viewController.postProvider = PostProviderController()
                 viewController.onPostCreated = onPostCreated
+                return viewController
+            case .errorView(let error):
+                let nibName = NibName.errorViewController.rawValue
+                let viewController = ErrorViewController(nibName: nibName, bundle: nil)
+                viewController.error = error
                 return viewController
         }
     }

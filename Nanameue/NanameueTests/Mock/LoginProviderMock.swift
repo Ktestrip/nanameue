@@ -7,9 +7,11 @@
 
 import Foundation
 @testable import Nanameue
-private enum MockError: Error {
+
+enum MockError: Error {
     case random
 }
+
 class LoginProviderMock: LoginProvider {
     var currentUser: User? { return userToReturn }
     

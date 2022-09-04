@@ -22,11 +22,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootViewController = ViewProvider.getViewController(view: .loginViewController)
         }
         let navigation = UINavigationController(rootViewController: rootViewController)
-
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
+        //register for error gesture
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleError),
+                                               name: .errorInformation,
+                                               object: nil)
     }
 
+    @objc private func handleError(_ notification: Notification) {
+        guard let content = notification.userInfo?[Notification.Name.errorInformation.rawValue] as? Error else {
+            return
+        }
+        DispatchQueue.main.async {
+            guard let errorViewController = ViewProvider
+                .getViewController(view: .errorView(error: content)) as? ErrorViewController else {
+                return
+            }
+
+            var topViewController = UIApplication.shared.windows.first?.rootViewController
+            while let viewController = topViewController?.presentedViewController {
+                topViewController = viewController
+            }
+            if let sheet = errorViewController.sheetPresentationController {
+                sheet.detents = [.medium() ]
+                sheet.preferredCornerRadius = 20
+                sheet.prefersGrabberVisible = true
+            }
+            topViewController?.present(errorViewController, animated: true, completion: nil)
+        }
+    }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

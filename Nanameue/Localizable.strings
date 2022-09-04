@@ -30,7 +30,7 @@
 "company_name" = "awesome company";
 
 
-// MARK: - CREAT POST SECTION
+// MARK: - CREATE POST SECTION
 
 "create_share_post" = "share post";
 "create_add_picture" = "add a picture";
@@ -39,3 +39,9 @@
 "create_need_access_library_title" = "⊂(▀¯▀⊂) allow access (つ▀¯▀)つ";
 "create_need_access_library_content" = "we need to access your library to be able to share your thoughts ! please allow access in your settings";
 "create_settings_redirect" = "settings";
+
+
+// MARK: - ERROR SECTION
+
+"error_title" = "ERROR (╯°□°）╯︵ ┻━┻";
+

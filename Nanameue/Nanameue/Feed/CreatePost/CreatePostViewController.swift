@@ -147,7 +147,7 @@ class CreatePostViewController: UIViewController {
                     self.onPostCreated?(post)
                     self.dismiss(animated: true)
                 case .failure(let error):
-                    print("error -> ", error)
+                    ErrorModal.dispatch(error: error)
             }
         }
     }
