@@ -36,3 +36,9 @@ class Post: Identifiable, Codable {
         content = try container.decode(String.self, forKey: .content)
     }
 }
+
+extension Post: Equatable {
+    static func == (lhs: Post, rhs: Post) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

@@ -42,6 +42,20 @@ class FeedViewController: UIViewController {
         }
     }
 
+    private func removePost(post: Post) {
+        postProvider?.deletePost(postToDelete: post) { res in
+            switch res {
+                case .success(_):
+                    if let index = self.posts.firstIndex(of: post) {
+                        self.posts.remove(at: index)
+                        self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .bottom)
+                    }
+                case .failure(let err):
+                    print("error -> ", err)
+            }
+        }
+    }
+
     private func setupUI() {
         self.title = "company_name".translate
         self.view.backgroundColor = UIColor(named: "mainColor")
@@ -123,7 +137,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             .dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell else {
             return UITableViewCell()
         }
-        cell.setupCell(post: self.posts[indexPath.row])
+        cell.setupCell(post: self.posts[indexPath.row]) { post in
+            self.removePost(post: post)
+        }
         return cell
     }
 }
