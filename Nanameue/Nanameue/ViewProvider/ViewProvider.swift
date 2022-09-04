@@ -19,7 +19,7 @@ enum ViewProvider {
         case loginViewController
         case createAccountViewController(onAccountCreated: (() -> Void))
         case feedViewController
-        case createPostViewController(onPostCreated: ((Post?) -> Void))
+        case createPostViewController(onPostCreated: ((Post) -> Void))
     }
 
     static func getViewController(view: ViewProvider.AvailableView) -> UIViewController {
