@@ -45,7 +45,7 @@ only `Xib` are used, `Storyboard` remains intact
 
 I really focused on doing the cleanest things, most testable things, and easier things to understand. No black magic, or dark undocummented API usage
 
-About third party, only robust and trusted third party libraries are used. I pick them the same way I would do for a professionnal project. checking number of star, issues, number of answer to this library on SO, and does it exactly cover 100% of my needs.
+About third party, only robust and trusted third party libraries are used. I pick them the same way I would do for a professionnal project. checking number of star, issues, number of answer to this library on SO, and asking myself if it exactly cover 100% of my needs.
 
 Firebase is used as a backend
 
