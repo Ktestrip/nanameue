@@ -32,11 +32,11 @@ class PostTableViewCell: UITableViewCell {
     }
 
     private func setupUI() {
-        self.containerView.backgroundColor = UIColor(named: "mainColorDarker")
+        self.containerView.backgroundColor = AssetsColor.mainColorDark
         self.containerView.layer.cornerRadius = 24
         self.containerView.clipsToBounds = true
         self.imageViewHeightConstraint.constant = 0
-        self.deleteButton.setImage(UIImage(named: "trashcanIcon"), for: .normal)
+        self.deleteButton.setImage(AssetsIcon.trashIcon, for: .normal)
         self.deleteButton.setTitle("", for: .normal)
         self.backgroundColor = .clear
     }
