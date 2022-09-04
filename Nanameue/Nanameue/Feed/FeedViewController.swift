@@ -82,7 +82,7 @@ class FeedViewController: UIViewController {
         let rightNavigationBarView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         let logoutImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
 
-        logoutImageView.image = AssetsIcon.logout?.withTintColor(.white)
+        logoutImageView.image = AssetsIcon.logout
         logoutImageView.contentMode = UIView.ContentMode.scaleAspectFit
         logoutImageView.layer.masksToBounds = true
         rightNavigationBarView.addSubview(logoutImageView)
