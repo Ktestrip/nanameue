@@ -36,10 +36,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zl-Lf-Rm7">
-                                <rect key="frame" x="447" y="200" width="32" height="32"/>
+                                <rect key="frame" x="455" y="208" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="Y8D-sn-zp1"/>
-                                    <constraint firstAttribute="height" constant="32" id="yod-Kv-Zjz"/>
+                                    <constraint firstAttribute="width" constant="24" id="Y8D-sn-zp1"/>
+                                    <constraint firstAttribute="height" constant="24" id="yod-Kv-Zjz"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="delete"/>
@@ -55,6 +55,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bif-e5-ikQ" firstAttribute="leading" secondItem="Qkt-HK-qqZ" secondAttribute="leading" constant="12" id="2M0-27-zPJ"/>
+                            <constraint firstItem="6zl-Lf-Rm7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d9N-8L-AbU" secondAttribute="trailing" constant="12" id="2N5-jX-JAz"/>
                             <constraint firstAttribute="bottom" secondItem="6zl-Lf-Rm7" secondAttribute="bottom" constant="12" id="2b3-ss-HxA"/>
                             <constraint firstItem="dkx-zb-Ta1" firstAttribute="leading" secondItem="Qkt-HK-qqZ" secondAttribute="leading" constant="12" id="5Is-Bf-4Ah"/>
                             <constraint firstItem="d9N-8L-AbU" firstAttribute="centerX" secondItem="Qkt-HK-qqZ" secondAttribute="centerX" id="6UF-zS-Oue"/>
