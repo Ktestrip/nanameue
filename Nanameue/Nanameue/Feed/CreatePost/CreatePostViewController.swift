@@ -128,6 +128,7 @@ class CreatePostViewController: UIViewController {
 
     @objc private func removePicture() {
         self.postImageView.image = nil
+        self.updateShareButtonEnabling()
         self.changeImagecontainerConstraints()
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
@@ -232,6 +233,10 @@ class CreatePostViewController: UIViewController {
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
+
+    private func updateShareButtonEnabling() {
+        sharePostButton.isEnabled = !self.postTextView.text.isEmpty || self.postImageView.image != nil
+    }
 }
 
 extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
@@ -254,7 +259,7 @@ extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigati
 extension CreatePostViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
-        sharePostButton.isEnabled = !textView.text.isEmpty
+        self.updateShareButtonEnabling()
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
