@@ -137,6 +137,7 @@ class CreatePostViewController: UIViewController {
 
     @objc private func sharePost() {
         let post = Post(content: self.postTextView.text)
+        self.hideKeyboard()
         self.sharePostButton.animateActivity()
         self.globalInteraction(enable: false)
         self.postProvider?.createPost(newPost: post, imageURL: self.imageURL) { [weak self] res in

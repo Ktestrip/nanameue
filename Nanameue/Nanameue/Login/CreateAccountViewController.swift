@@ -107,6 +107,7 @@ class CreateAccountViewController: UIViewController {
     }
 
     private func performSignUp(email: String, password: String) {
+        self.hideKeyboard()
         self.createButton.animateActivity()
         self.loginProvider?.createAccount(email: email, password: password) { res in
             self.createButton.stopActivity()

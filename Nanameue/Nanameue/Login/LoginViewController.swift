@@ -96,6 +96,7 @@ class LoginViewController: UIViewController {
     }
 
     private func performConnection(email: String, password: String) {
+        self.hideKeyboard()
         self.connectButton.animateActivity()
         self.loginProvider?.performLogin(email: email, password: password) { res in
             self.connectButton.stopActivity()
