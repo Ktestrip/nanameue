@@ -21,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
     private var post: Post?
     private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, yyyy 'at' hh:mm"
+        formatter.dateFormat = "MMMM dd, yyyy '-' hh:mm"
         return formatter
     }()
 
@@ -32,7 +32,6 @@ class PostTableViewCell: UITableViewCell {
     }
 
     private func setupUI() {
-        
         self.containerView.backgroundColor = AssetsColor.mainColorDark
         self.containerView.layer.cornerRadius = 24
         self.containerView.clipsToBounds = true
