@@ -32,6 +32,7 @@ class PostTableViewCell: UITableViewCell {
     }
 
     private func setupUI() {
+        
         self.containerView.backgroundColor = AssetsColor.mainColorDark
         self.containerView.layer.cornerRadius = 24
         self.containerView.clipsToBounds = true
@@ -45,6 +46,8 @@ class PostTableViewCell: UITableViewCell {
         self.post = post
         self.onDelete = onDelete
         self.postImageView.image = nil
+        //remove possible activity indicator that could still be visible
+        self.postImageView.subviews.forEach { $0.removeFromSuperview() }
         // if cell is reused and previous cell add constraints up for image view, constant will still be 128
         self.imageViewHeightConstraint.constant = 0
         self.contentLabel.text = post.content
