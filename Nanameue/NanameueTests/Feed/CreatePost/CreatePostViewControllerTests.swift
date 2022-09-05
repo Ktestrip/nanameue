@@ -131,4 +131,34 @@ class CreatePostViewControllerTests: XCTestCase {
         vc.sharePostButton.sendActions(for: .touchUpInside)
         waitForExpectations(timeout: 0.5)
     }
+    
+    func testNoMoreTexButImageShareShouldBeEnable() {
+        let vc = self.setupView()
+        vc.postTextView.text = "only to match criteria to unlock share post possibility"
+        vc.textViewDidChange(vc.postTextView)
+        vc.postImageView.image = UIImage()
+        XCTAssertTrue(vc.sharePostButton.isEnabled)
+        vc.postTextView.text = ""
+        vc.textViewDidChange(vc.postTextView)
+        XCTAssertTrue(vc.sharePostButton.isEnabled)
+    }
+    
+    func testNoMoreTexNoMoreImageShareShouldBeDisable() {
+        let vc = self.setupView()
+        vc.postTextView.text = "only to match criteria to unlock share post possibility"
+        vc.textViewDidChange(vc.postTextView)
+        vc.imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: [UIImagePickerController.InfoKey.originalImage: UIImage()])
+        XCTAssertTrue(vc.sharePostButton.isEnabled)
+        
+        vc.postTextView.text = ""
+        vc.textViewDidChange(vc.postTextView)
+        //only text has been remove, we're still allow to post
+        XCTAssertTrue(vc.sharePostButton.isEnabled)
+        
+        let button = vc.view.subviews.last! as! UIButton // lastly added view is our UIButton
+        button.sendActions(for: .touchUpInside)
+        
+        //sending action to the button did remove the picture, button shouldn't be enable anymore
+        XCTAssertFalse(vc.sharePostButton.isEnabled)
+    }
 }
