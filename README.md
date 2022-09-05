@@ -22,6 +22,10 @@ pod install
 
 wait for dependencies install
 
+## Account
+
+For an already populated account, you can use `test@test.fr` as email and `testtest` as password
+
 
 ## How The project was built
 
