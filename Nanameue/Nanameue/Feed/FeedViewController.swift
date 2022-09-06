@@ -16,6 +16,7 @@ class FeedViewController: UIViewController {
 
     private var posts: [Post] = []
     private let refreshControl = UIRefreshControl()
+    private var emptyTableViewLabel: UILabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,6 @@ class FeedViewController: UIViewController {
         self.setupBehavior()
         self.setupNavigationBarUI()
         self.getPost()
-        // Do any additional setup after loading the view.
     }
 
     private func registerCell() {
@@ -34,14 +34,14 @@ class FeedViewController: UIViewController {
     @objc private func getPost() {
         // fetch users post
         postProvider?.getPost() { res in
+            self.refreshControl.endRefreshing()
             switch res {
                 case .success(let fetchedPost):
-                    self.refreshControl.endRefreshing()
                     // sort result by date
                     self.posts = fetchedPost.sorted(by: { $0.date > $1.date })
                     self.tableView.reloadData()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    ErrorModal.dispatch(error: error)
             }
         }
     }
@@ -128,7 +128,20 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.posts.count
+        guard self.posts.isEmpty else {
+            self.emptyTableViewLabel = nil
+            self.tableView.backgroundView = nil
+            return self.posts.count
+        }
+        self.emptyTableViewLabel = UILabel(frame: CGRect(x: 0,
+                                                        y: 0,
+                                                        width: self.tableView.bounds.size.width,
+                                                        height: self.tableView.bounds.size.height))
+        self.emptyTableViewLabel?.text = "no_post".translate
+        self.emptyTableViewLabel?.textAlignment = .center
+        self.emptyTableViewLabel?.numberOfLines = 0
+        self.tableView.backgroundView = emptyTableViewLabel
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
