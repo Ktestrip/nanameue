@@ -28,6 +28,7 @@
 // MARK: - FEED SECTION
 
 "company_name" = "awesome company";
+"no_post" = "there is no post yet (っ˘̩╭╮˘̩)っ\n\nAdd one by typing on the \" + \" button !";
 
 
 // MARK: - CREATE POST SECTION
