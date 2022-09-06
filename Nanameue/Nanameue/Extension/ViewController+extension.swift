@@ -40,5 +40,4 @@ extension UIViewController {
     @objc open func keyboardWillShow(notification: NSNotification) {}
 
     @objc open func keyboardWillHide(notification: NSNotification) {}
-
 }

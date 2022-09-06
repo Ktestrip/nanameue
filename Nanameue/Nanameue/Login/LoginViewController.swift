@@ -102,6 +102,7 @@ class LoginViewController: UIViewController {
             self.connectButton.stopActivity()
             switch res {
                 case .success(_):
+                    // on login succes, redirect to the feed view controller
                     let feedViewController = ViewProvider.getViewController(view: .feedViewController)
                     self.navigationController?.setViewControllers([feedViewController], animated: true)
                 case .failure(let error):
