@@ -50,12 +50,16 @@ class PostProviderController: PostProvider {
 
     func createPost(newPost: Post, imageURL: URL?, onCompletion: @escaping ((Result<Post, Error>) -> Void)) {
         guard let url = imageURL else {
+            // if no img url, jsut create a post without picture
             self.savePost(post: newPost, onCompletion: onCompletion)
             return
         }
+        // post does contains an image
+        // first upload the picture
         uploadPicture(imageURL: url) { res in
             switch res {
                 case .success(let url):
+                    // picture was post, url point to the bucket where it is stored, we can now save the updated post
                     self.savePost(post: newPost, imageUrl: url, onCompletion: onCompletion)
                 case .failure(let error):
                     onCompletion(.failure(CustomError.pictureUploadFailed(error)))
@@ -64,6 +68,7 @@ class PostProviderController: PostProvider {
     }
 
     func deletePost(postToDelete: Post, onCompletion: @escaping ((Result<Bool, Error>) -> Void)) {
+        // look for a post with same UUID and delete it
         databaseRef?.child(postToDelete.id.uuidString).removeValue() { error, _ in
             guard let error = error else {
                 onCompletion(.success(true))
@@ -74,12 +79,14 @@ class PostProviderController: PostProvider {
     }
 
     private func savePost(post: Post, imageUrl: URL? = nil, onCompletion: @escaping ((Result<Post, Error>) -> Void)) {
+        // if we got an url, we update the object
         if let url = imageUrl {
             post.setImageUrl(url: url)
         }
         do {
             let data = try encoder.encode(post)
             let json = try JSONSerialization.jsonObject(with: data)
+            // post the object with id as key to fetch it easier
             databaseRef?.child("\(post.id.uuidString)")
                 .setValue(json)
             onCompletion(.success(post))

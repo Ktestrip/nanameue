@@ -15,6 +15,7 @@ private enum NibName: String {
     case errorViewController = "ErrorViewController"
 }
 
+// ViewProvider does provide correct setup for each view controller present in the app
 enum ViewProvider {
     enum AvailableView {
         case loginViewController

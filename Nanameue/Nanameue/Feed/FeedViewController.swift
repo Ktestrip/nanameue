@@ -32,10 +32,12 @@ class FeedViewController: UIViewController {
     }
 
     @objc private func getPost() {
+        // fetch users post
         postProvider?.getPost() { res in
             switch res {
                 case .success(let fetchedPost):
                     self.refreshControl.endRefreshing()
+                    // sort result by date
                     self.posts = fetchedPost.sorted(by: { $0.date > $1.date })
                     self.tableView.reloadData()
                 case .failure(let error):
@@ -48,6 +50,7 @@ class FeedViewController: UIViewController {
         postProvider?.deletePost(postToDelete: post) { res in
             switch res {
                 case .success(_):
+                    // try to remove the newly deleted post
                     if let index = self.posts.firstIndex(of: post) {
                         self.posts.remove(at: index)
                         self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .bottom)
@@ -93,20 +96,11 @@ class FeedViewController: UIViewController {
         self.navigationController?.navigationBar.backgroundColor = AssetsColor.mainColor
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     @objc private func logout() {
         loginProvider?.logOut { res in
             switch res {
                 case .success(_):
+                    // redirect to login upon logout
                     let loginViewController = ViewProvider.getViewController(view: .loginViewController)
                     self.navigationController?.setViewControllers([loginViewController], animated: true)
                 case .failure(let error):
@@ -117,6 +111,7 @@ class FeedViewController: UIViewController {
 
     @objc private func openCreatePostView() {
         let viewController = ViewProvider.getViewController(view: .createPostViewController { post in
+            // on completion we add the newly created post into the tableview, call to getPost not needed
             self.posts.insert(post, at: 0)
             self.tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
         })

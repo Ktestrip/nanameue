@@ -194,12 +194,14 @@ class CreatePostViewController: UIViewController {
     }
 
     @objc private func checkLibraryPermission() {
+        // check for status of the library access
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photoAuthorizationStatus {
             case .authorized:
                 self.openLibrary()
                 return
             case .notDetermined:
+                // ask permission to the user, depending on the answer we open the library
                 PHPhotoLibrary.requestAuthorization { status in
                     if status == PHAuthorizationStatus.authorized {
                         self.openLibrary()
@@ -212,6 +214,7 @@ class CreatePostViewController: UIViewController {
     }
 
     private func redirectToSettingDialog() {
+        // redirect the user to the settings so he/she cann allow acces to the library
         let actionSheet = UIAlertController(title: "create_need_access_library_title".translate,
                                             message: "create_need_access_library_content".translate,
                                             preferredStyle: .actionSheet)
@@ -236,6 +239,7 @@ class CreatePostViewController: UIViewController {
     }
 
     private func updateShareButtonEnabling() {
+        // verify if upload is allowed or not
         sharePostButton.isEnabled = !self.postTextView.text.isEmpty || self.postImageView.image != nil
     }
 }
@@ -243,6 +247,7 @@ class CreatePostViewController: UIViewController {
 extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
+            // store the selected image and it's local url
             self.postImageView.image = image
             self.imageURL = info[.imageURL] as? URL
             self.changeImagecontainerConstraints()
@@ -271,6 +276,7 @@ extension CreatePostViewController: UITextViewDelegate {
 
 extension CreatePostViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        // if upload is going on, user can't dismiss the view
         return !(self.sharePostButton.isButtonAnimating() ?? false)
     }
 }
