@@ -24,8 +24,7 @@ class FeedViewController: UIViewController {
         self.registerCell()
         self.setupBehavior()
         self.setupNavigationBarUI()
-//        self.getPost()
-        // Do any additional setup after loading the view.
+        self.getPost()
     }
 
     private func registerCell() {
