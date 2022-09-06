@@ -27,6 +27,12 @@ class FeedViewController: UIViewController {
         self.getPost()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.refreshControl.beginRefreshing()
+        self.getPost()
+    }
+
     private func registerCell() {
         self.tableView.register(PostTableViewCell.nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
@@ -133,14 +139,16 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             self.tableView.backgroundView = nil
             return self.posts.count
         }
-        self.emptyTableViewLabel = UILabel(frame: CGRect(x: 0,
-                                                        y: 0,
-                                                        width: self.tableView.bounds.size.width,
-                                                        height: self.tableView.bounds.size.height))
-        self.emptyTableViewLabel?.text = "no_post".translate
-        self.emptyTableViewLabel?.textAlignment = .center
-        self.emptyTableViewLabel?.numberOfLines = 0
-        self.tableView.backgroundView = emptyTableViewLabel
+        if !self.refreshControl.isRefreshing {
+            self.emptyTableViewLabel = UILabel(frame: CGRect(x: 0,
+                                                            y: 0,
+                                                            width: self.tableView.bounds.size.width,
+                                                            height: self.tableView.bounds.size.height))
+            self.emptyTableViewLabel?.text = "no_post".translate
+            self.emptyTableViewLabel?.textAlignment = .center
+            self.emptyTableViewLabel?.numberOfLines = 0
+            self.tableView.backgroundView = emptyTableViewLabel
+        }
         return 0
     }
 
