@@ -43,7 +43,7 @@ class PostProviderController: PostProvider {
                 }
                 onCompletion(.success(posts))
             } else {
-                onCompletion(.failure(CustomError.fetchingPostError))
+                onCompletion(.success([]))
             }
         }
     }
