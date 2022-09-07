@@ -72,12 +72,17 @@ class PostTableViewCell: UITableViewCell {
     private func createActivityIndicator() {
         let activityIndicator = NVActivityIndicatorView(
             frame: CGRect(
-                x: self.postImageView.frame.width / 2 - ((self.postImageView.frame.height * 0.7) / 2),
-                y: self.postImageView.frame.height / 2 - ((self.postImageView.frame.height * 0.7) / 2),
-                width: self.postImageView.frame.height * 0.7,
-                height: self.postImageView.frame.height * 0.7),
+                x: 0,
+                y: 0,
+                width: self.postImageView.frame.height * 0.4,
+                height: self.postImageView.frame.height * 0.4),
             type: .circleStrokeSpin)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.postImageView.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.postImageView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.postImageView.centerYAnchor)
+        ])
         self.activityIndicatorView = activityIndicator
         self.activityIndicatorView?.startAnimating()
     }
