@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		590A278528CB01B5002DCE25 /* UIAnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A278428CB01B5002DCE25 /* UIAnimatedButton.swift */; };
 		5972866E28BCD29B004B721E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972866D28BCD29B004B721E /* AppDelegate.swift */; };
 		5972867028BCD29B004B721E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972866F28BCD29B004B721E /* SceneDelegate.swift */; };
 		5972867528BCD29B004B721E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5972867328BCD29B004B721E /* Main.storyboard */; };
@@ -54,7 +55,6 @@
 		59FAFFDD28C4BE64002AC5D7 /* Notifications+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFDC28C4BE64002AC5D7 /* Notifications+Extensions.swift */; };
 		59FAFFE028C4C7C7002AC5D7 /* ErrorViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFDF28C4C7C7002AC5D7 /* ErrorViewControllerTest.swift */; };
 		59FAFFE328C4CB45002AC5D7 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFE228C4CB45002AC5D7 /* Assets.swift */; };
-		59FAFFE728C4F41E002AC5D7 /* UIAnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAFFE628C4F41E002AC5D7 /* UIAnimatedButton.swift */; };
 		A3F49BBAC4C89A6BE72DC519 /* Pods_Nanameue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017C7C68E0CC5A1447EE1515 /* Pods_Nanameue.framework */; };
 		E2825674AD417AC16C4544F3 /* Pods_NanameueTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31094F3F9131696A0B0C30C /* Pods_NanameueTests.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +72,7 @@
 /* Begin PBXFileReference section */
 		017C7C68E0CC5A1447EE1515 /* Pods_Nanameue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nanameue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7A754705931A62E0C5B278 /* Pods-Nanameue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanameue.debug.xcconfig"; path = "Target Support Files/Pods-Nanameue/Pods-Nanameue.debug.xcconfig"; sourceTree = "<group>"; };
+		590A278428CB01B5002DCE25 /* UIAnimatedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAnimatedButton.swift; sourceTree = "<group>"; };
 		5972866A28BCD29B004B721E /* Nanameue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanameue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5972866D28BCD29B004B721E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5972866F28BCD29B004B721E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,7 +125,6 @@
 		59FAFFDC28C4BE64002AC5D7 /* Notifications+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Extensions.swift"; sourceTree = "<group>"; };
 		59FAFFDF28C4C7C7002AC5D7 /* ErrorViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTest.swift; sourceTree = "<group>"; };
 		59FAFFE228C4CB45002AC5D7 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		59FAFFE628C4F41E002AC5D7 /* UIAnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAnimatedButton.swift; path = ../../../../../../Users/keuha/Desktop/UIAnimatedButton.swift; sourceTree = "<group>"; };
 		7189B058481754EEBAC7C9C3 /* Pods-Nanameue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanameue.release.xcconfig"; path = "Target Support Files/Pods-Nanameue/Pods-Nanameue.release.xcconfig"; sourceTree = "<group>"; };
 		742BFB4B953A63EE32BA9CCF /* Pods-NanameueTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanameueTests.release.xcconfig"; path = "Target Support Files/Pods-NanameueTests/Pods-NanameueTests.release.xcconfig"; sourceTree = "<group>"; };
 		965804952C0FE73B158FE220 /* Pods-NanameueTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanameueTests.debug.xcconfig"; path = "Target Support Files/Pods-NanameueTests/Pods-NanameueTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -249,9 +249,9 @@
 		5991CBEB28C48E9100CFA211 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				590A278428CB01B5002DCE25 /* UIAnimatedButton.swift */,
 				59E3A1D528BE9FFE00EF4F20 /* ShakableTextField.swift */,
 				5991CBF628C49F2C00CFA211 /* IdentifiableCell.swift */,
-				59FAFFE628C4F41E002AC5D7 /* UIAnimatedButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -621,7 +621,7 @@
 				597F128128C130A600379B95 /* PostProviderController.swift in Sources */,
 				59FAFFDD28C4BE64002AC5D7 /* Notifications+Extensions.swift in Sources */,
 				59FAFFE328C4CB45002AC5D7 /* Assets.swift in Sources */,
-				59FAFFE728C4F41E002AC5D7 /* UIAnimatedButton.swift in Sources */,
+				590A278528CB01B5002DCE25 /* UIAnimatedButton.swift in Sources */,
 				597F127F28C1306000379B95 /* Post.swift in Sources */,
 				5972866E28BCD29B004B721E /* AppDelegate.swift in Sources */,
 				59E3A1E128BEB13900EF4F20 /* CreateAccountViewController.swift in Sources */,
